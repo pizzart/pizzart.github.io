@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
 
 body {
+  height: 100%;
   background-color: #0a040a;
   text-align: center;
   font-family: "Major Mono Display", monospace;
