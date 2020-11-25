@@ -1,20 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
 
 body {
-  margin: 0 0;
-  width: 100%;
-  height: 100%;
   background-attachment: fixed;
   background: #0a040a;
   text-align: center;
   font-family: "Major Mono Display", monospace;
   color: whitesmoke;
-}
-
-html,
-body {
-  width: 100%;
-  height: 100%;
 }
 
 .icon {
