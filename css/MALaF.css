@@ -1,0 +1,41 @@
+#drop-area {
+  margin: auto;
+  border: 2px dashed whitesmoke;
+  border-radius: 2px;
+  width: 30%;
+  padding: 4px;
+  transition: all 0.2s;
+}
+
+#drop-area.highlight {
+  border-color: #5887f7;
+}
+
+#drop-area * {
+  margin: 4px;
+}
+
+.file-button {
+  display: inline-block;
+  padding: 5px;
+  color: whitesmoke;
+  background-color: rgba(52, 52, 52, 0.12);
+  cursor: pointer;
+  border-radius: 2px;
+  border: 1px solid whitesmoke;
+  transition: all 0.2s;
+}
+
+.file-button:hover {
+  background-color: rgba(52, 52, 52, 0.35);
+  border-color: #5887f7;
+}
+
+.file-button:active {
+  background-color: rgba(52, 52, 52, 0.35);
+  color: #5887f7;
+}
+
+#fileElem {
+  display: none;
+}

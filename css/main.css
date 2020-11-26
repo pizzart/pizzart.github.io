@@ -12,20 +12,20 @@ body {
   background: #0a040a;
 }
 
-#content {
+.content {
   padding: 64px;
   font-size: 24px;
   align-content: center;
   text-align: center;
 }
 
-#content * {
+.content * {
   padding: 8px;
 }
 
 button {
   padding: 9px 25px;
-  background-color: cornflowerblue;
+  background-color: #5887f7;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -38,7 +38,7 @@ button {
 }
 
 .clickable:hover {
-  color: cornflowerblue;
+  color: #5887f7;
 }
 
 #topnav {
@@ -65,4 +65,23 @@ button {
 
 #topnav ul li {
   margin: 15px;
+}
+
+.contact-image {
+  height: 64px;
+  filter: brightness(1);
+  transition: all 0.5s;
+}
+
+.contact-image:hover {
+  filter: brightness(0.5);
+}
+
+#contacts {
+  text-align: center;
+  list-style: none;
+}
+
+#contacts li {
+  display: inline-block;
 }
