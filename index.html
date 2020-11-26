@@ -2,17 +2,38 @@
 
 <html>
   <head>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="pizza.svg" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="images/pizza.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PizzArt</title>
   </head>
   <body>
     <header>
-      <h1>
-        PizzArt
-        <img class="icon" src="pizza.svg" alt="" />
-      </h1>
+      <nav id="topnav">
+        <a class="clickable" href="index.html">
+          <img class="icon" src="images/pizza.svg" alt="" />
+        </a>
+
+        <ul>
+          <li><a href="MALaF.html" class="clickable">MALaF</a></li>
+          <li><a href="#about" class="clickable">About</a></li>
+          <li><a href="#contact" class="clickable">Contact</a></li>
+        </ul>
+      </nav>
     </header>
+
+    <div id="content">
+      <h1>PizzArt</h1>
+
+      <article id="about">
+        <h2>About</h2>
+        <p>it's a me, pizzart!</p>
+      </article>
+
+      <article id="contact">
+        <h2>Contact</h2>
+        <p>My contacts:</p>
+      </article>
+    </div>
   </body>
 </html>
