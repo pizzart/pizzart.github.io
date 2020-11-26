@@ -1,6 +1,7 @@
-let dropArea = document.getElementById('drop-area');
+var filesContents = []
+let dropArea = document.getElementById('drop-area')
 
-;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
     dropArea.addEventListener(eventName, preventDefaults, false)
 })
 
@@ -9,13 +10,13 @@ function preventDefaults(e) {
     e.stopPropagation()
 }
 
-;['dragenter', 'dragover'].forEach(eventName => {
+['dragenter', 'dragover'].forEach(eventName => {
     dropArea.addEventListener(eventName, highlight, false)
 })
 
-    ;['dragleave', 'drop'].forEach(eventName => {
-        dropArea.addEventListener(eventName, unhighlight, false)
-    })
+['dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, unhighlight, false)
+})
 
 function highlight(e) {
     dropArea.classList.add('highlight')
@@ -42,13 +43,23 @@ function readFile(file) {
     let reader = new FileReader();
     reader.onload = function () {
         let lines = reader.result.split('\n');
-        if (lines[0] != "FreeLanguage") {
-            console.log("ain't a lang file")
-        }
-        for (let line = 0; line < lines.length; line++) {
-            console.log(lines[line]);
-        };
-    };
-    reader.readAsText(file);
-};
+        if (lines[0] == "FreeLanguage") {
+            filesContents.push(lines)
+            console.log("added a lang file")
 
+        }
+        else {
+            console.log("ain't pushing that")
+        }
+    }
+    reader.readAsText(file);
+}
+
+function shuffle(fileLines) {
+    let lineMap = new Map()
+    for (const line in fileLines) {
+        let splitLine = line.split(" ")
+        lineMap.set(splitLine[1], splitLine[2])
+    }
+    return (lineMap)
+}
