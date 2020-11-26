@@ -1,6 +1,6 @@
 let dropArea = document.getElementById('drop-area');
 
-['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
     dropArea.addEventListener(eventName, preventDefaults, false)
 })
 
@@ -33,3 +33,22 @@ function handleDrop(e) {
 
     handleFiles(files)
 }
+
+function handleFiles(files) {
+    ([...files]).forEach(readFile)
+}
+
+function readFile(file) {
+    let reader = new FileReader();
+    reader.onload = function () {
+        let lines = reader.result.split('\n');
+        if (lines[0] != "FreeLanguage") {
+            console.log("ain't a lang file")
+        }
+        for (let line = 0; line < lines.length; line++) {
+            console.log(lines[line]);
+        };
+    };
+    reader.readAsText(file);
+};
+
