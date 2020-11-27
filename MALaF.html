@@ -1,48 +1,54 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/MALaF.css" />
-    <link rel="icon" href="images/pizza.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MALaF</title>
-  </head>
-  <body>
-    <header>
-      <nav id="topnav">
-        <a class="click" href="index.html">
-          <img class="icon" src="images/pizza.svg" alt="" />
-        </a>
-      </nav>
-    </header>
-    <div class="content">
-      <article>
-        <h1>MALaF</h1>
-        <h4 id="malaf-long">(Modifier for Asobo Language Files)</h4>
-        <h4>
-          Initially started out as a Python script, now regrown into a Web
-          application.
-        </h4>
-      </article>
-    </div>
-    <div id="drop-area">
-      <form class="my-form">
-        <label class="file-button" for="fileElem">Choose a file</label>
-        <p>or drag it here to get started!</p>
-        <p id="fail">
-          It seems like there isn't a "FreeLanguage" line in this file. Are you
-          sure this is an Asobo Language File?
-        </p>
-        <input
-          type="file"
-          id="fileElem"
-          multiple
-          accept=".pc,.psp,.ps2"
-          onchange="handleFiles(this.files)"
-        />
-      </form>
-    </div>
-  </body>
-  <script src="js/MALaF.js"></script>
+    <head>
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/MALaF.css" />
+        <link rel="icon" href="images/pizza.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>MALaF</title>
+    </head>
+    <body>
+        <header>
+            <nav id="topnav">
+                <a class="click" href="index.html">
+                    <img class="icon" src="images/pizza.svg" alt="" />
+                </a>
+            </nav>
+        </header>
+        <div class="content">
+            <article>
+                <h1>MALaF</h1>
+                <h4 id="malaf-long">(Modifier for Asobo Language Files)</h4>
+                <h4>
+                    Initially started out as a Python script, now regrown into a
+                    Web application.
+                </h4>
+            </article>
+        </div>
+        <div id="drop-area">
+            <form class="my-form">
+                <label class="file-button" for="fileElem">Choose a file</label>
+                <p>or drag it here to get started!</p>
+                <p id="fail">
+                    It seems like there isn't a "FreeLanguage" line here. Are
+                    you sure this is an Asobo Language File?
+                </p>
+                <input
+                    type="file"
+                    id="fileElem"
+                    multiple
+                    accept=".pc,.psp,.ps2"
+                    onchange="handleFiles(this.files)"
+                />
+            </form>
+        </div>
+        <div id="buttons">
+            <ul id="button-list">
+                <li><button id="shuffle">Shuffle</button></li>
+                <li><button id="color">Colorize</button></li>
+            </ul>
+        </div>
+    </body>
+    <script src="js/MALaF.js"></script>
 </html>

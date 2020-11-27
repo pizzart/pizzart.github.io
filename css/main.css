@@ -1,87 +1,116 @@
 @import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Major Mono Display", monospace;
-  color: whitesmoke;
-  text-decoration: none;
+	margin: 0;
+	padding: 0;
+	font-family: "Major Mono Display", monospace;
+	color: whitesmoke;
+	text-decoration: none;
 }
 
 body {
-  background: #0a040a;
-}
-
-.content {
-  padding: 64px;
-  font-size: x-large;
-  align-content: center;
-  text-align: center;
-}
-
-.content * {
-  padding: 8px;
+	justify-content: center;
+	background: #0a040a;
 }
 
 button {
-  padding: 9px 25px;
-  background-color: #5887f7;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
+	font-size: x-large;
+	padding: 10px;
+	color: whitesmoke;
+	background-color: rgba(52, 52, 52, 0.12);
+	cursor: pointer;
+	border-radius: 2px;
+	border: 1px solid whitesmoke;
+	transition: all 0.2s;
+}
+
+button:hover {
+	background-color: rgba(52, 52, 52, 0.35);
+	border-color: #5887f7;
+}
+
+button:active {
+	background-color: rgba(52, 52, 52, 0.35);
+	color: #5887f7;
+}
+
+ul {
+	display: flex;
+	justify-content: center;
+	list-style: none;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	padding: 64px;
+	font-size: x-large;
+	text-align: center;
+}
+
+.content * {
+	padding: 8px;
 }
 
 .clickable {
-  color: whitesmoke;
-  cursor: pointer;
-  transition: all 0.3s;
+	color: whitesmoke;
+	cursor: pointer;
+	transition: all 0.3s;
 }
 
 .clickable:hover {
-  color: #5887f7;
+	color: #5887f7;
 }
 
 #topnav {
-  font-size: x-large;
-  position: fixed;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  background-color: rgba(6, 0, 6, 0.7);
-  width: 100%;
-  z-index: 1;
+	font-size: x-large;
+	position: fixed;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	background-color: rgba(6, 0, 6, 0.7);
+	width: 100%;
+	z-index: 1;
 }
 
 .icon {
-  width: 48px;
-  padding: 4px 16px;
-}
-
-#topnav ul {
-  display: flex;
-  list-style: none;
+	width: 48px;
+	padding: 4px 16px;
 }
 
 #topnav ul li {
-  margin: 15px;
+	margin: 15px;
 }
 
 .contact-image {
-  height: 64px;
-  filter: brightness(1);
-  transition: all 0.5s;
+	height: 64px;
+	filter: brightness(1);
+	transition: all 0.5s;
 }
 
 .contact-image:hover {
-  filter: brightness(0.5);
+	filter: brightness(0.5);
 }
 
-#contacts {
-  text-align: center;
-  list-style: none;
+.tooltip {
+	visibility: hidden;
+	display: flex;
+	font-size: large;
+	margin: -10px;
+
+	position: absolute;
+	z-index: 1;
+
+	opacity: 0;
+	transition: all 0.5s;
 }
 
-#contacts li {
-  display: inline-block;
+.tooltip-parent {
+	display: flex;
+	justify-content: center;
+}
+
+.tooltip-parent:hover .tooltip {
+	visibility: visible;
+	opacity: 1;
 }
