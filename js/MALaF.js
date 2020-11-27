@@ -1,22 +1,23 @@
-var filesContents = []
+let ext = ['pc', 'psp', 'ps2']
+let filesContents = new Map()
 let dropArea = document.getElementById('drop-area')
 
-['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-    dropArea.addEventListener(eventName, preventDefaults, false)
-})
+    ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false)
+    })
 
 function preventDefaults(e) {
     e.preventDefault()
     e.stopPropagation()
 }
 
-['dragenter', 'dragover'].forEach(eventName => {
+;['dragenter', 'dragover'].forEach(eventName => {
     dropArea.addEventListener(eventName, highlight, false)
 })
 
-['dragleave', 'drop'].forEach(eventName => {
-    dropArea.addEventListener(eventName, unhighlight, false)
-})
+    ;['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, unhighlight, false)
+    })
 
 function highlight(e) {
     dropArea.classList.add('highlight')
@@ -44,8 +45,8 @@ function readFile(file) {
     reader.onload = function () {
         let lines = reader.result.split('\n');
         if (lines[0] == "FreeLanguage") {
-            filesContents.push(lines)
-            console.log("added a lang file")
+            filesContents.set(file.name, lines)
+            downloadFile(file.name, shuffleFile(lines))
 
         }
         else {
@@ -55,11 +56,74 @@ function readFile(file) {
     reader.readAsText(file);
 }
 
-function shuffle(fileLines) {
-    let lineMap = new Map()
-    for (const line in fileLines) {
-        let splitLine = line.split(" ")
-        lineMap.set(splitLine[1], splitLine[2])
+function shuffleFile(fileLines) {
+    let newLines = new Array()
+    let numbers = new Array()
+    let lines = new Array()
+
+    for (const line of fileLines) {
+        numbers.push(line.split(" ")[1])
+        lines.push(getSubStr(line, '"'))
     }
-    return (lineMap)
+
+    lines = shuffleArray(lines)
+
+    newLines.push("FreeLanguage")
+    for (const i in numbers) {
+        if (numbers[i] != undefined) {
+            newLines.push(`TT ${numbers[i]} "${lines[i]}"`)
+        }
+    }
+
+    fileLines = newLines
+    return (fileLines)
+}
+
+function shuffleArray(array) {
+    let newArray = array
+
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+
+    return (newArray)
+}
+
+function getSubStr(str, delim) {
+    var a = str.indexOf(delim);
+    if (a == -1)
+        return '';
+
+    var b = str.indexOf(delim, a + 1);
+    if (b == -1)
+        return '';
+
+    return str.substr(a + 1, b - a - 1);
+}
+
+function downloadFile(filename, lines) {
+    let text = ""
+    for (const line of lines) {
+        text += `${line}\n`
+    }
+    var file = new Blob([text], { type: 'text/plain' });
+
+    var downloadLink = document.createElement("a");
+    downloadLink.download = filename;
+    downloadLink.innerHTML = "Download File";
+
+    if (window.webkitURL != null) {
+        // Chromium-based
+        downloadLink.href = window.webkitURL.createObjectURL(file);
+    }
+    else {
+        // Firefox
+        downloadLink.href = window.URL.createObjectURL(file);
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+    }
+
+    downloadLink.click();
 }

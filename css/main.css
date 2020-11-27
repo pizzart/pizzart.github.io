@@ -14,7 +14,7 @@ body {
 
 .content {
   padding: 64px;
-  font-size: 24px;
+  font-size: x-large;
   align-content: center;
   text-align: center;
 }
@@ -42,7 +42,7 @@ button {
 }
 
 #topnav {
-  font-size: 24px;
+  font-size: x-large;
   position: fixed;
   display: flex;
   justify-content: space-between;
