@@ -1,6 +1,6 @@
-let ext = ['pc', 'psp', 'ps2']
 let filesContents = new Map()
-let dropArea = document.getElementById('drop-area')
+const ext = ['pc', 'psp', 'ps2']
+const dropArea = document.getElementById('drop-area')
 
     ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         dropArea.addEventListener(eventName, preventDefaults, false)
@@ -44,39 +44,18 @@ function readFile(file) {
     let reader = new FileReader();
     reader.onload = function () {
         let lines = reader.result.split('\n');
-        if (lines[0] == "FreeLanguage") {
-            filesContents.set(file.name, lines)
-            downloadFile(file.name, shuffleFile(lines))
-
+        if (lines.includes("FreeLanguage")) {
+            if (ext.includes((file.name.split(".")[file.name.split(".").length - 1]))) {
+                document.getElementById('fail').style.display = 'none'
+                filesContents.set(file.name, lines)
+                downloadFile(file.name, shuffleLines(colorLines(lines)))
+            }
         }
         else {
-            console.log("ain't pushing that")
+            document.getElementById('fail').style.display = 'initial'
         }
     }
     reader.readAsText(file);
-}
-
-function shuffleFile(fileLines) {
-    let newLines = new Array()
-    let numbers = new Array()
-    let lines = new Array()
-
-    for (const line of fileLines) {
-        numbers.push(line.split(" ")[1])
-        lines.push(getSubStr(line, '"'))
-    }
-
-    lines = shuffleArray(lines)
-
-    newLines.push("FreeLanguage")
-    for (const i in numbers) {
-        if (numbers[i] != undefined) {
-            newLines.push(`TT ${numbers[i]} "${lines[i]}"`)
-        }
-    }
-
-    fileLines = newLines
-    return (fileLines)
 }
 
 function shuffleArray(array) {
@@ -100,6 +79,48 @@ function getSubStr(str, delim) {
         return '';
 
     return str.substr(a + 1, b - a - 1);
+}
+
+function shuffleLines(fileLines) {
+    let newLines = new Array()
+    let numbers = new Array()
+    let lines = new Array()
+
+    for (const line of fileLines) {
+        numbers.push(line.split(" ")[1])
+        lines.push(getSubStr(line, '"'))
+    }
+
+    lines = shuffleArray(lines)
+
+    newLines.push("FreeLanguage")
+    for (const i in numbers) {
+        if (numbers[i] != undefined) {
+            newLines.push(`TT ${numbers[i]} "${lines[i]}"`)
+        }
+    }
+
+    return (newLines)
+}
+
+function colorLines(fileLines) {
+    let newLines = new Array()
+    let numbers = new Array()
+    let lines = new Array()
+
+    for (const line of fileLines) {
+        numbers.push(line.split(" ")[1])
+        lines.push("^900" + getSubStr(line, '"') + "^000")
+    }
+
+    newLines.push("FreeLanguage")
+    for (const i in numbers) {
+        if (numbers[i] != undefined) {
+            newLines.push(`TT ${numbers[i]} "${lines[i]}"`)
+        }
+    }
+
+    return (newLines)
 }
 
 function downloadFile(filename, lines) {
