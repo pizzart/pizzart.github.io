@@ -29,7 +29,7 @@ button:hover {
 	border-color: #5887f7;
 }
 
-button:active {
+button:focus {
 	background-color: rgba(52, 52, 52, 0.35);
 	color: #5887f7;
 }
@@ -60,6 +60,10 @@ ul {
 
 .clickable:hover {
 	color: #5887f7;
+}
+
+.clickable:focus {
+	color: #2655c5;
 }
 
 #topnav {
