@@ -40,23 +40,34 @@
 				/>
 			</form>
 		</div>
+		<div class="center-div">
+			<button id="default">Use default file instead</button>
+		</div>
 		<div id="functions">
 			<div id="shuffle">
 				<label class="toggle-control">
-					Shuffle
-					<input type="checkbox" />
+					<input type="checkbox" id="shuffle-toggle" checked />
+					<label for="shuffle-toggle">Shuffle</label>
 					<span class="control"></span>
 				</label>
-				<form>
+				<form id="shuffle-buttons">
 					<div>
-						<label class="container"
-							>Lines
-							<input type="checkbox" />
+						<label class="container">
+							<input
+								type="checkbox"
+								id="shuffle-lines"
+								value="lines"
+							/>
+							<label for="shuffle-lines">Lines</label>
 							<span class="check checkmark-checkbox"></span>
 						</label>
-						<label class="container"
-							>Words
-							<input type="checkbox" />
+						<label class="container">
+							<input
+								type="checkbox"
+								id="shuffle-words"
+								value="words"
+							/>
+							<label for="shuffle-words">Words</label>
 							<span class="check checkmark-checkbox"></span>
 						</label>
 					</div>
@@ -64,30 +75,49 @@
 			</div>
 			<div id="color">
 				<label class="toggle-control">
-					Colorize
-					<input type="checkbox" />
+					<input type="checkbox" id="color-toggle" checked />
+					<label for="color-toggle">Colorize</label>
 					<span class="control"></span>
 				</label>
-				<form>
+				<form id="color-buttons" disabled>
 					<div>
-						<label class="container"
-							>Lines
-							<input type="radio" name="color" checked />
+						<label class="container">
+							<input
+								type="radio"
+								name="color"
+								id="color-lines"
+								value="lines"
+								checked
+							/>
+							<label for="color-lines">Lines</label>
 							<span class="check checkmark-radio"></span>
 						</label>
-						<label class="container"
-							>Words
-							<input type="radio" name="color" />
+						<label class="container">
+							<input
+								type="radio"
+								name="color"
+								id="color-words"
+								value="words"
+							/>
+							<label for="color-words">Words</label>
 							<span class="check checkmark-radio"></span>
 						</label>
-						<label class="container"
-							>Letters
-							<input type="radio" name="color" />
+						<label class="container">
+							<input
+								type="radio"
+								name="color"
+								id="color-letters"
+								value="letters"
+							/>
+							<label for="color-letters">Letters</label>
 							<span class="check checkmark-radio"></span>
 						</label>
 					</div>
 				</form>
 			</div>
+		</div>
+		<div class="center-div">
+			<button id="download">Download</button>
 		</div>
 	</body>
 	<script src="js/MALaF.js"></script>

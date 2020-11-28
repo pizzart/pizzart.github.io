@@ -1,7 +1,11 @@
 let filesContents = new Map();
 const ext = ["pc", "psp", "ps2"];
-const dropArea = document.getElementById("drop-area");
+const dropArea = document.getElementById("drop-area")
 const failText = document.getElementById("fail");
+const shuffleToggle = document.getElementById("shuffle-toggle")
+const shuffleButtons = document.getElementById("shuffle-buttons")
+const colorToggle = document.getElementById("color-toggle")
+const colorButtons = document.getElementById("color-buttons");
 
 ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
     dropArea.addEventListener(eventName, preventDefaults, false);
@@ -28,6 +32,14 @@ function unhighlight(e) {
 }
 
 dropArea.addEventListener("drop", handleDrop, false);
+
+shuffleToggle.addEventListener("change", () => {
+  shuffleButtons.hidden = !shuffleToggle.checked
+})
+
+colorToggle.addEventListener("change", () => {
+  colorButtons.hidden = !colorToggle.checked
+})
 
 function handleDrop(e) {
     let dt = e.dataTransfer;
