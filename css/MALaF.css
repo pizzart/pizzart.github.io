@@ -2,7 +2,7 @@
 	display: flex;
 	text-align: center;
 	justify-content: center;
-	font-size: x-large;
+	font-size: 1em;
 	margin: auto;
 	border: 2px dashed whitesmoke;
 	border-radius: 2px;
@@ -79,7 +79,7 @@
 	padding-left: 35px;
 	margin-bottom: 12px;
 	cursor: pointer;
-	font-size: x-large;
+	font-size: 1em;
 	user-select: none;
 }
 
@@ -147,7 +147,7 @@
 	padding-left: 60px;
 	margin-bottom: 12px;
 	cursor: pointer;
-	font-size: 28px;
+	font-size: 1em;
 	user-select: none;
 }
 
