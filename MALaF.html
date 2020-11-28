@@ -30,10 +30,7 @@
 			<form class="my-form">
 				<label class="file-button" for="fileElem">Choose a file</label>
 				<p>or drag it here to get started!</p>
-				<p id="fail">
-					It seems like there isn't a "FreeLanguage" line here. Are
-					you sure this is an Asobo Language File?
-				</p>
+				<p id="fail"></p>
 				<input
 					type="file"
 					id="fileElem"
@@ -43,82 +40,54 @@
 				/>
 			</form>
 		</div>
-		<div id="buttons">
-			<ul id="functions">
-				<li>
-					<ul id="shuffle-list">
-						<li>
-							<label class="switch">
-								<input type="checkbox" />
-								<span class="slider round"></span>
-							</label>
-							Shuffle
-						</li>
-						<li>
-							<form>
-								<div>
-									<label class="container"
-										>Lines
-										<input type="checkbox" />
-										<span
-											class="check checkmark-checkbox"
-										></span>
-									</label>
-									<label class="container"
-										>Words
-										<input type="checkbox" />
-										<span
-											class="check checkmark-checkbox"
-										></span>
-									</label>
-								</div>
-							</form>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<ul id="color-list">
-						<li>
-							<label class="switch">
-								<input type="checkbox" />
-								<span class="slider round"></span>
-							</label>
-							Colorize
-						</li>
-						<li>
-							<form>
-								<div>
-									<label class="container"
-										>Lines
-										<input
-											type="radio"
-											name="color"
-											checked
-										/>
-										<span
-											class="check checkmark-radio"
-										></span>
-									</label>
-									<label class="container"
-										>Words
-										<input type="radio" name="color" />
-										<span
-											class="check checkmark-radio"
-										></span>
-									</label>
-									<label class="container"
-										>Letters
-										<input type="radio" name="color" />
-										<span
-											class="check checkmark-radio"
-										></span>
-									</label>
-								</div>
-							</form>
-						</li>
-					</ul>
-				</li>
-			</ul>
+		<div id="functions">
+			<div id="shuffle">
+				<label class="toggle-control">
+					Shuffle
+					<input type="checkbox" />
+					<span class="control"></span>
+				</label>
+				<form>
+					<div>
+						<label class="container"
+							>Lines
+							<input type="checkbox" />
+							<span class="check checkmark-checkbox"></span>
+						</label>
+						<label class="container"
+							>Words
+							<input type="checkbox" />
+							<span class="check checkmark-checkbox"></span>
+						</label>
+					</div>
+				</form>
+			</div>
+			<div id="color">
+				<label class="toggle-control">
+					Colorize
+					<input type="checkbox" />
+					<span class="control"></span>
+				</label>
+				<form>
+					<div>
+						<label class="container"
+							>Lines
+							<input type="radio" name="color" checked />
+							<span class="check checkmark-radio"></span>
+						</label>
+						<label class="container"
+							>Words
+							<input type="radio" name="color" />
+							<span class="check checkmark-radio"></span>
+						</label>
+						<label class="container"
+							>Letters
+							<input type="radio" name="color" />
+							<span class="check checkmark-radio"></span>
+						</label>
+					</div>
+				</form>
+			</div>
 		</div>
 	</body>
 	<script src="js/MALaF.js"></script>

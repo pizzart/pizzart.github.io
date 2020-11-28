@@ -56,10 +56,11 @@ function readFile(file) {
             } else {
                 failText.style.display = "initial";
                 failText.innerHTML =
-                    "It seems like this file has an extension different than (.pc, .psp, .ps2). Are you sure this is an Asobo Language File ?";
-            }
-        } else {
-            failText.style.display = "initial";
+                "It seems like this file has an extension different than (.pc, .psp, .ps2). Are you sure this is an Asobo Language File ?";
+              }
+            } else {
+              failText.style.display = "initial";
+              failText.innerHTML = "It seems like there isn't a \"FreeLanguage\" line here. Are you sure this is an Asobo Language File?"
         }
     };
     reader.readAsText(file);
@@ -161,18 +162,14 @@ function downloadFile(filename, lines) {
     downloadLink.download = filename;
     downloadLink.innerHTML = "Download File";
 
-    /*     if (window.webkitURL != null) {
-              // Chromium-based
-              downloadLink.href = window.webkitURL.createObjectURL(file);
-          } */
-    // else {
+    // Chromium-based
+    //downloadLink.href = window.webkitURL.createObjectURL(file);
 
     // Firefox
     downloadLink.href = window.URL.createObjectURL(file);
     downloadLink.onclick = downloadLink.remove();
     downloadLink.style.display = "none";
     document.body.appendChild(downloadLink);
-    // }
 
     downloadLink.click();
 }

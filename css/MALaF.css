@@ -54,16 +54,18 @@
 	color: palevioletred;
 }
 
-#functions li {
+#functions {
 	margin: 10px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
 }
 
-#shuffle-list,
-#color-list {
-	display: inline-block;
-	text-align: start;
-	font-size: x-large;
+#functions div {
+	margin: 20px;
 }
+
+/* Checkboxes / Radios */
 
 .container {
 	display: block;
@@ -71,7 +73,7 @@
 	padding-left: 35px;
 	margin-bottom: 12px;
 	cursor: pointer;
-	font-size: 22px;
+	font-size: x-large;
 	user-select: none;
 }
 
@@ -91,7 +93,7 @@
 }
 
 .container:hover input ~ .check {
-	background-color: lightgray;
+	background-color: darkgray;
 }
 
 .container input:checked ~ .check {
@@ -131,55 +133,51 @@
 	border-radius: 50%;
 }
 
-.switch {
+/* Toggles */
+
+.toggle-control {
+	display: flex;
 	position: relative;
-	display: inline-block;
-	width: 60px;
-	height: 34px;
-}
-
-.switch input {
-	display: none;
-}
-
-.slider {
-	position: absolute;
+	padding-left: 60px;
+	margin-bottom: 12px;
 	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: lightgray;
-	transition: 0.4s;
+	font-size: 28px;
+	user-select: none;
 }
 
-.slider:before {
+.toggle-control input {
 	position: absolute;
-	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
-	background-color: whitesmoke;
-	transition: 0.4s;
+	display: none;
+	cursor: pointer;
 }
 
-input:checked + .slider {
+.toggle-control input:checked ~ .control {
 	background-color: #5887f7;
 }
 
-input:focus + .slider {
-	box-shadow: 0 0 1px #5887f7;
+.toggle-control input:checked ~ .control:after {
+	left: 23px;
 }
 
-input:checked + .slider:before {
-	transform: translateX(26px);
+.toggle-control .control {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 30px;
+	width: 50px;
+	border-radius: 5px;
+	background-color: darkgray;
+	transition: background-color 0.5s ease;
 }
 
-.slider.round {
-	border-radius: 34px;
-}
-
-.slider.round:before {
-	border-radius: 50%;
+.toggle-control .control:after {
+	content: "";
+	position: absolute;
+	left: 2px;
+	top: 2px;
+	width: 25px;
+	height: 25px;
+	border-radius: 5px;
+	background: whitesmoke;
+	transition: left 0.5s ease;
 }
