@@ -56,17 +56,17 @@ ul {
 	padding: 0.25em;
 }
 
-.clickable {
+.link {
 	color: whitesmoke;
 	cursor: pointer;
 	transition: all 0.3s;
 }
 
-.clickable:hover {
+.link:hover {
 	color: #5887f7;
 }
 
-.clickable:focus {
+.link:focus {
 	color: #2655c5;
 }
 
