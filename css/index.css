@@ -10,7 +10,7 @@
 
 body {
 	width: 100%;
-	font-size: 1.5em;
+	font-size: 1vw;
 	justify-content: center;
 	background: #0a040a;
 }
@@ -118,16 +118,4 @@ ul {
 .tooltip-parent:hover .tooltip {
 	visibility: visible;
 	opacity: 1;
-}
-
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (max-device-height: 480px) and (orientation: portrait) {
-	body {
-		font-size: 1em;
-	}
-}
-
-@media only screen and (max-device-width: 480px) and (min-device-width: 320px) and (max-device-height: 480px) and (orientation: landscape) {
-	body {
-		font-size: 1.25em;
-	}
 }
