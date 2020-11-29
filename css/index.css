@@ -15,23 +15,26 @@ body {
 	background: #0a040a;
 }
 
-button {
-	font-size: 1em;
-	padding: 10px;
+button,
+.file-button {
+	font-size: 0.8em;
+	padding: 0.4em;
 	color: whitesmoke;
 	background-color: rgba(52, 52, 52, 0.12);
 	cursor: pointer;
-	border-radius: 2px;
-	border: 1px solid whitesmoke;
+	border-radius: 0.1em;
+	border: 0.05em solid whitesmoke;
 	transition: all 0.2s;
 }
 
-button:hover {
+button:hover,
+.file-button:hover {
 	background-color: rgba(52, 52, 52, 0.35);
 	border-color: #5887f7;
 }
 
-button:focus {
+button:focus,
+.file-button:active {
 	background-color: rgba(52, 52, 52, 0.35);
 	color: #5887f7;
 }
@@ -45,12 +48,12 @@ ul {
 .content {
 	display: flex;
 	flex-direction: column;
-	padding: 64px;
+	padding-top: 20vh;
 	text-align: center;
 }
 
 .content * {
-	padding: 8px;
+	padding: 0.25em;
 }
 
 .clickable {
@@ -68,10 +71,11 @@ ul {
 }
 
 #topnav {
-	font-size: 1.25em;
 	position: fixed;
 	display: flex;
 	justify-content: space-between;
+	align-content: center;
+	align-items: center;
 	flex-direction: row;
 	background-color: rgba(6, 0, 6, 0.7);
 	width: 100%;
@@ -79,16 +83,16 @@ ul {
 }
 
 .icon {
-	width: 48px;
-	padding: 4px 16px;
+	width: 2em;
+	padding-left: auto;
 }
 
 #topnav ul li {
-	margin: 15px;
+	padding: 0.5em;
 }
 
 .contact-image {
-	height: 56px;
+	height: 2em;
 	filter: brightness(1);
 	transition: all 0.5s;
 }
@@ -101,7 +105,7 @@ ul {
 	visibility: hidden;
 	display: flex;
 	font-size: 0.75em;
-	margin: -10px;
+	margin: -1em;
 
 	position: absolute;
 	z-index: 1;
