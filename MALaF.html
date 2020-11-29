@@ -34,17 +34,13 @@
 				<input
 					type="file"
 					id="fileElem"
-					multiple
-					accept=".pc,.psp,.ps2"
+					accept=".pc,.psp,.ps2,.PC,.PSP,.PS2"
 					onchange="handleFiles(this.files)"
 				/>
 			</form>
 		</div>
-		<div class="center-div">
-			<button id="default">Use default file instead</button>
-		</div>
 		<div id="functions">
-			<div id="shuffle">
+			<div id="shuffle" hidden>
 				<label class="toggle-control">
 					<input
 						type="checkbox"
@@ -61,7 +57,9 @@
 							<input
 								type="checkbox"
 								id="shuffle-lines"
+								name="shuffle"
 								value="lines"
+								checked
 							/>
 							<label for="shuffle-lines">Lines</label>
 							<span class="check checkmark-checkbox"></span>
@@ -70,6 +68,7 @@
 							<input
 								type="checkbox"
 								id="shuffle-words"
+								name="shuffle"
 								value="words"
 							/>
 							<label for="shuffle-words">Words</label>
@@ -78,7 +77,7 @@
 					</div>
 				</form>
 			</div>
-			<div id="color">
+			<div id="color" hidden>
 				<label class="toggle-control">
 					<input
 						type="checkbox"
@@ -127,7 +126,7 @@
 			</div>
 		</div>
 		<div class="center-div">
-			<button id="download">Download</button>
+			<button id="download" hidden>Download</button>
 		</div>
 	</body>
 	<script src="js/MALaF.js"></script>

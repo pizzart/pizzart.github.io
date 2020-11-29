@@ -1,32 +1,29 @@
-let filesContents = new Map();
-const ext = ["pc", "psp", "ps2"];
+let contents = new Array();
+let name = new String();
+const ext = ["pc", "psp", "ps2", "PC", "PSP", "PS2"];
+const modifiers = new Map([
+	["shufflelines", shuffleLines],
+	["shufflewords", shuffleWords],
+	["colorlines", colorLines],
+	["colorwords", colorWords],
+	["colorletters", colorLetters],
+]);
+let currentModifiers = new Array();
+let disabledModifiers = new Array();
 const dropArea = document.getElementById("drop-area");
 const failText = document.getElementById("fail");
 const functions = document.getElementById("functions");
+const downloadButton = document.getElementById("download");
 
 ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
 	dropArea.addEventListener(eventName, preventDefaults, false);
 });
-
-function preventDefaults(e) {
-	e.preventDefault();
-	e.stopPropagation();
-}
-
 ["dragenter", "dragover"].forEach((eventName) => {
 	dropArea.addEventListener(eventName, highlight, false);
 });
 ["dragleave", "drop"].forEach((eventName) => {
 	dropArea.addEventListener(eventName, unhighlight, false);
 });
-
-function highlight(e) {
-	dropArea.classList.add("highlight");
-}
-
-function unhighlight(e) {
-	dropArea.classList.remove("highlight");
-}
 
 dropArea.addEventListener("drop", handleDrop, false);
 
@@ -36,8 +33,91 @@ dropArea.addEventListener("drop", handleDrop, false);
 		child.querySelector(
 			"div[class='function-buttons']"
 		).hidden = !toggle.checked;
+
+		if (!toggle.checked) {
+			[
+				...Array.from(modifiers.keys()).filter((s) =>
+					s.includes(child.id)
+				),
+			].forEach((func) => {
+				if (currentModifiers.includes(modifiers.get(func))) {
+					currentModifiers.splice(
+						currentModifiers.indexOf(modifiers.get(func)),
+						1
+					);
+					disabledModifiers.push(modifiers.get(func));
+				}
+			});
+		} else {
+			[
+				...Array.from(modifiers.keys()).filter((s) =>
+					s.includes(child.id)
+				),
+			].forEach((func) => {
+				if (disabledModifiers.includes(modifiers.get(func))) {
+					disabledModifiers.splice(
+						disabledModifiers.indexOf(modifiers.get(func)),
+						1
+					);
+					currentModifiers.push(modifiers.get(func));
+				}
+			});
+		}
+		console.log(currentModifiers);
+		console.log(disabledModifiers);
 	});
 });
+
+[...functions.children].forEach((child) => {
+	[...child.children[1].children[0].children].forEach((container) => {
+		container.children[0].addEventListener("change", () => {
+			let input = container.children[0];
+			if (input.name == "color") {
+				let form = functions.children[1].querySelector("form");
+				let inputs = form.querySelectorAll("input");
+				[...inputs].forEach((button) => {
+					if (button.checked) {
+						currentModifiers.splice(
+							currentModifiers.indexOf(
+								modifiers.get(button.name + button.value)
+							),
+							1
+						);
+					}
+				});
+			}
+			if (input.checked) {
+				currentModifiers.push(modifiers.get(input.name + input.value));
+			} else {
+				currentModifiers.splice(
+					currentModifiers.indexOf(
+						modifiers.get(input.name + input.value)
+					),
+					1
+				);
+			}
+			console.log(currentModifiers);
+		});
+	});
+});
+
+downloadButton.addEventListener("click", function (e) {
+	downloadFile(name);
+	e.preventDefault();
+});
+
+function preventDefaults(e) {
+	e.preventDefault();
+	e.stopPropagation();
+}
+
+function highlight(e) {
+	dropArea.classList.add("highlight");
+}
+
+function unhighlight(e) {
+	dropArea.classList.remove("highlight");
+}
 
 function handleDrop(e) {
 	let dt = e.dataTransfer;
@@ -47,20 +127,28 @@ function handleDrop(e) {
 }
 
 function handleFiles(files) {
-	[...files].forEach(readFile);
+	[...functions.children].forEach((child) => {
+		child.hidden = false;
+	});
+	downloadButton.hidden = false;
+	dropArea.style.display = "none";
+	readFile(files[0]);
 }
 
 function readFile(file) {
 	let reader = new FileReader();
 	reader.onload = function () {
 		let lines = reader.result.split("\n");
+
 		if (
 			ext.includes(file.name.split(".")[file.name.split(".").length - 1])
 		) {
-			if (lines.includes("FreeLanguage")) {
+			if (lines.map((string) => string.trim()).includes("FreeLanguage")) {
 				failText.style.display = "none";
-				filesContents.set(file.name, lines);
-				downloadFile(file.name, shuffleWords(lines));
+				name = file.name;
+				contents = lines;
+				currentModifiers = [shuffleLines, colorLines];
+				// downloadFile(file.name);
 			} else {
 				failText.style.display = "initial";
 				failText.innerHTML =
@@ -96,6 +184,12 @@ function getSubStr(str, delim) {
 	if (b == -1) return "";
 
 	return str.substr(a + 1, b - a - 1);
+}
+
+function randomInt(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function shuffleLines(fileLines) {
@@ -147,9 +241,13 @@ function colorLines(fileLines) {
 	let numbers = new Array();
 	let lines = new Array();
 
+	// color = String(color);
 	for (const line of fileLines) {
+		let color = randomInt(0, 999);
+		color = "0".repeat(3 - color.length) + color;
 		numbers.push(line.split(" ")[1]);
-		lines.push("^900" + getSubStr(line, '"') + "^000");
+		let newLine = getSubStr(line, '"');
+		lines.push(`^${color + newLine}^000`);
 	}
 
 	newLines.push("FreeLanguage");
@@ -162,19 +260,103 @@ function colorLines(fileLines) {
 	return newLines;
 }
 
-function downloadFile(filename, lines) {
+function colorWords(fileLines) {
+	let newLines = new Array();
+	let numbers = new Array();
+	let lines = new Array();
+
+	for (const line of fileLines) {
+		numbers.push(line.split(" ")[1]);
+		let newLine = getSubStr(line, '"').split(" ");
+		let colorLine = new String();
+		for (const word of newLine) {
+			let color = String(randomInt(0, 999));
+			color = "0".repeat(3 - color.length) + color;
+			colorLine += `^${color + word}^000 `;
+		}
+		lines.push(colorLine);
+	}
+
+	newLines.push("FreeLanguage");
+	for (const i in numbers) {
+		if (numbers[i] != undefined) {
+			newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
+		}
+	}
+
+	return newLines;
+}
+
+function colorLetters(fileLines) {
+	let newLines = new Array();
+	let numbers = new Array();
+	let lines = new Array();
+
+	for (const line of fileLines) {
+		numbers.push(line.split(" ")[1]);
+		let newLine = getSubStr(line, '"');
+		let colorLine = new String();
+		let isKey = false;
+		for (const c in newLine) {
+			if (
+				newLine[c] == "S" &&
+				newLine[Number(c) + 1] == "T" &&
+				newLine[Number(c) + 2] == "R" &&
+				newLine[Number(c) + 3] == "_"
+			) {
+				isKey = true;
+			}
+			if (isKey) {
+				if (newLine[c] == " ") {
+					isKey = false;
+				} else {
+					colorLine += newLine[c];
+					continue;
+				}
+			}
+			if (
+				`${colorLine}^000${newLine[c]}^000`.length <= 100 &&
+				newLine[c] != " "
+			) {
+				let color = String(randomInt(0, 999));
+				color = "0".repeat(3 - color.length) + color;
+				colorLine = `${colorLine}^${color + newLine[c]}^000`;
+			} else {
+				colorLine += newLine[c];
+			}
+		}
+		lines.push(colorLine);
+	}
+
+	newLines.push("FreeLanguage");
+	for (const i in numbers) {
+		if (numbers[i] != undefined) {
+			newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
+		}
+	}
+	return newLines;
+}
+
+function downloadFile(filename) {
+	let modified = contents;
+	let lines = new Array();
+	for (const modifier of currentModifiers) {
+		modified = modifier(modified);
+	}
+	lines = modified;
+
 	let text = "";
 	for (const line of lines) {
 		text += `${line}\n`;
 	}
-	var file = new Blob([text], { type: "text/plain" });
+	let file = new Blob([text], { type: "text/plain" });
 
-	var downloadLink = document.createElement("a");
+	let downloadLink = document.createElement("a");
 	downloadLink.download = filename;
 	downloadLink.innerHTML = "Download File";
 
 	// Chromium-based
-	//downloadLink.href = window.webkitURL.createObjectURL(file);
+	// downloadLink.href = window.webkitURL.createObjectURL(file);
 
 	// Firefox + Chromium
 	downloadLink.href = window.URL.createObjectURL(file);
@@ -183,4 +365,8 @@ function downloadFile(filename, lines) {
 	document.body.appendChild(downloadLink);
 
 	downloadLink.click();
+
+	contents = [];
+	currentModifiers = [];
+	location.reload();
 }
