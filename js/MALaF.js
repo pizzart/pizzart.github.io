@@ -171,21 +171,20 @@ function updatePreview() {
 	}
 	text = getSubStr(text[1414], '"');
 	let newText = /\^\d{3}/.test(text);
+	let newHTML = new String();
 	if (newText) {
-		newText = text.match(/\^\d{3}/);
+		newText = text.match(/(\^\d{3})(.*)/g);
 		[...newText].forEach((str) => {
-			if (/\^000/.test(newText)) {
-				newText.splice(newText.indexOf(str), 1);
-			}
+			newHTML += `<p style="color: #${str.slice(1, 4)}">${str.slice(
+				4,
+				-4
+			)}</p>`;
 		});
 	} else {
 		newText = text;
 	}
+	newHTML = newHTML.replace("~", "\n");
 	console.log(newText);
-	let newHTML = new String();
-	/* 	[...newText].forEach((str) => {
-		newHTML += `<p style="color: #${newText}"></p>`;
-	}); */
 	document.getElementById("preview").querySelector("p").innerHTML = newHTML;
 }
 
@@ -209,44 +208,6 @@ function getSubStr(str, delim) {
 
 	return str.substr(a + 1, b - a - 1);
 }
-
-var getFromBetween = {
-	results: [],
-	string: "",
-	getFromBetween: function (sub1, sub2) {
-		if (this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0)
-			return false;
-		var SP = this.string.indexOf(sub1) + sub1.length;
-		var string1 = this.string.substr(0, SP);
-		var string2 = this.string.substr(SP);
-		var TP = string1.length + string2.indexOf(sub2);
-		return this.string.substring(SP, TP);
-	},
-	removeFromBetween: function (sub1, sub2) {
-		if (this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0)
-			return false;
-		var removal = sub1 + this.getFromBetween(sub1, sub2) + sub2;
-		this.string = this.string.replace(removal, "");
-	},
-	getAllResults: function (sub1, sub2) {
-		if (this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0)
-			return;
-
-		var result = this.getFromBetween(sub1, sub2);
-		this.results.push(result);
-		this.removeFromBetween(sub1, sub2);
-
-		if (this.string.indexOf(sub1) > -1 && this.string.indexOf(sub2) > -1) {
-			this.getAllResults(sub1, sub2);
-		} else return;
-	},
-	get: function (string, sub1, sub2) {
-		this.results = [];
-		this.string = string;
-		this.getAllResults(sub1, sub2);
-		return this.results;
-	},
-};
 
 function randomInt(min, max) {
 	min = Math.ceil(min);
@@ -303,12 +264,12 @@ function colorLines(fileLines) {
 	let numbers = new Array();
 	let lines = new Array();
 
-	// color = String(color);
 	for (const line of fileLines) {
 		let color = String(randomInt(0, 999));
 		color = "0".repeat(3 - color.length) + color;
 		numbers.push(line.split(" ")[1]);
 		let newLine = getSubStr(line, '"');
+		newLine = newLine.replace(newLine.match(/\^\d{3}/), "");
 		lines.push(`^${color + newLine}^000`);
 	}
 
@@ -330,6 +291,9 @@ function colorWords(fileLines) {
 	for (const line of fileLines) {
 		numbers.push(line.split(" ")[1]);
 		let newLine = getSubStr(line, '"').split(" ");
+		[...newLine].forEach((spl) => {
+			spl = spl.replace(spl.match(/\^\d{3}/), "");
+		});
 		let colorLine = new String();
 		for (const word of newLine) {
 			let color = String(randomInt(0, 999));
@@ -357,6 +321,7 @@ function colorLetters(fileLines) {
 	for (const line of fileLines) {
 		numbers.push(line.split(" ")[1]);
 		let newLine = getSubStr(line, '"');
+		newLine = newLine.replace(newLine.match(/\^\d{3}/), "");
 		let colorLine = new String();
 		let isKey = false;
 		for (const c in newLine) {
