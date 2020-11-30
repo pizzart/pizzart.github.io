@@ -3,16 +3,24 @@
 * {
 	margin: 0;
 	padding: 0;
-	font-family: "Major Mono Display", monospace;
-	color: whitesmoke;
 	text-decoration: none;
+	font-family: "Major Mono Display", monospace;
 }
 
 body {
-	width: 100%;
+	color: whitesmoke;
 	font-size: 3vh;
-	justify-content: center;
 	background: #0a040a;
+	text-align: center;
+}
+
+main {
+	padding-top: 20vh;
+	margin-inline: 10vw;
+}
+
+main * {
+	padding: 0.2em;
 }
 
 button,
@@ -45,32 +53,22 @@ ul {
 	list-style: none;
 }
 
-.content {
-	display: flex;
-	flex-direction: column;
-	padding-top: 20vh;
-	text-align: center;
-}
-
-.content * {
-	padding: 0.25em;
-}
-
-.link {
+a {
 	color: whitesmoke;
 	cursor: pointer;
 	transition: all 0.3s;
 }
 
-.link:hover {
+a:hover {
 	color: #5887f7;
 }
 
-.link:focus {
+a:focus {
 	color: #2655c5;
 }
 
-#topnav {
+#navbar {
+	font-size: 1.25em;
 	position: fixed;
 	display: flex;
 	justify-content: space-between;
@@ -82,9 +80,18 @@ ul {
 	z-index: 1;
 }
 
+#navbar ul {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#navbar li {
+	padding-inline: 0.5em;
+}
+
 .icon {
 	filter: brightness(1);
-	width: 1.75em;
+	width: 1.5em;
 	padding-left: auto;
 	transition: all 0.1s;
 }
@@ -97,11 +104,8 @@ ul {
 	filter: brightness(0.5);
 }
 
-#topnav ul li {
-	padding: 0.5em;
-}
-
 .contact-image {
+	padding-inline: 0.5em;
 	height: 2em;
 	filter: brightness(1);
 	transition: all 0.5s;
@@ -132,4 +136,26 @@ ul {
 .tooltip-parent:hover .tooltip {
 	visibility: visible;
 	opacity: 1;
+}
+
+#tip {
+	animation: splash 10s infinite alternate;
+}
+
+@keyframes splash {
+	0% {
+		color: whitesmoke;
+	}
+	25% {
+		color: azure;
+	}
+	50% {
+		color: mistyrose;
+	}
+	75% {
+		color: mintcream;
+	}
+	100% {
+		color: lavender;
+	}
 }

@@ -63,8 +63,7 @@ dropArea.addEventListener("drop", handleDrop, false);
 				}
 			});
 		}
-		console.log(currentModifiers);
-		console.log(disabledModifiers);
+		updatePreview();
 	});
 });
 
@@ -96,7 +95,7 @@ dropArea.addEventListener("drop", handleDrop, false);
 					1
 				);
 			}
-			console.log(currentModifiers);
+			updatePreview();
 		});
 	});
 });
@@ -165,6 +164,31 @@ function readFile(file) {
 	reader.readAsText(file);
 }
 
+function updatePreview() {
+	let text = contents;
+	for (const modifier of currentModifiers) {
+		text = modifier(text);
+	}
+	text = getSubStr(text[1414], '"');
+	let newText = /\^\d{3}/.test(text);
+	if (newText) {
+		newText = text.match(/\^\d{3}/);
+		[...newText].forEach((str) => {
+			if (/\^000/.test(newText)) {
+				newText.splice(newText.indexOf(str), 1);
+			}
+		});
+	} else {
+		newText = text;
+	}
+	console.log(newText);
+	let newHTML = new String();
+	/* 	[...newText].forEach((str) => {
+		newHTML += `<p style="color: #${newText}"></p>`;
+	}); */
+	document.getElementById("preview").querySelector("p").innerHTML = newHTML;
+}
+
 function shuffleArray(array) {
 	let newArray = array;
 
@@ -185,6 +209,44 @@ function getSubStr(str, delim) {
 
 	return str.substr(a + 1, b - a - 1);
 }
+
+var getFromBetween = {
+	results: [],
+	string: "",
+	getFromBetween: function (sub1, sub2) {
+		if (this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0)
+			return false;
+		var SP = this.string.indexOf(sub1) + sub1.length;
+		var string1 = this.string.substr(0, SP);
+		var string2 = this.string.substr(SP);
+		var TP = string1.length + string2.indexOf(sub2);
+		return this.string.substring(SP, TP);
+	},
+	removeFromBetween: function (sub1, sub2) {
+		if (this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0)
+			return false;
+		var removal = sub1 + this.getFromBetween(sub1, sub2) + sub2;
+		this.string = this.string.replace(removal, "");
+	},
+	getAllResults: function (sub1, sub2) {
+		if (this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0)
+			return;
+
+		var result = this.getFromBetween(sub1, sub2);
+		this.results.push(result);
+		this.removeFromBetween(sub1, sub2);
+
+		if (this.string.indexOf(sub1) > -1 && this.string.indexOf(sub2) > -1) {
+			this.getAllResults(sub1, sub2);
+		} else return;
+	},
+	get: function (string, sub1, sub2) {
+		this.results = [];
+		this.string = string;
+		this.getAllResults(sub1, sub2);
+		return this.results;
+	},
+};
 
 function randomInt(min, max) {
 	min = Math.ceil(min);
@@ -243,7 +305,7 @@ function colorLines(fileLines) {
 
 	// color = String(color);
 	for (const line of fileLines) {
-		let color = randomInt(0, 999);
+		let color = String(randomInt(0, 999));
 		color = "0".repeat(3 - color.length) + color;
 		numbers.push(line.split(" ")[1]);
 		let newLine = getSubStr(line, '"');
@@ -338,12 +400,10 @@ function colorLetters(fileLines) {
 }
 
 function downloadFile(filename) {
-	let modified = contents;
-	let lines = new Array();
+	let lines = contents;
 	for (const modifier of currentModifiers) {
-		modified = modifier(modified);
+		lines = modifier(lines);
 	}
-	lines = modified;
 
 	let text = "";
 	for (const line of lines) {

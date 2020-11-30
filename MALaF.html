@@ -9,125 +9,136 @@
 		<title>MALaF - PizzArt</title>
 	</head>
 	<body>
-		<header>
-			<nav id="topnav">
-				<a class="click" href="index.html">
-					<img class="icon" src="images/pizza.svg" alt="" />
-				</a>
+		<header id="navbar">
+			<a href="index.html">
+				<img class="icon" src="images/pizza.svg" alt="" />
+			</a>
+			<nav>
+				<ul>
+					<li><a href="MALaF.html">MALaF</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
 			</nav>
 		</header>
-		<div class="content">
+		<main>
 			<article>
 				<h1>MALaF</h1>
-				<h4 id="malaf-long">(Modifier for Asobo Language Files)</h4>
+				<h3 style="color: gray">(Modifier for Asobo Language Files)</h3>
 				<h4>
 					Initially started out as a Python script, now regrown into a
 					Web application.
 				</h4>
 			</article>
-		</div>
-		<div id="drop-area">
-			<form class="my-form">
-				<label class="file-button" for="fileElem">Choose a file</label>
-				<p>or drag it here to get started!</p>
-				<p id="fail"></p>
-				<input
-					type="file"
-					id="fileElem"
-					accept=".pc,.psp,.ps2,.PC,.PSP,.PS2"
-					onchange="handleFiles(this.files)"
-				/>
-			</form>
-		</div>
-		<div id="functions">
-			<div id="shuffle" hidden>
-				<label class="toggle-control">
+			<div id="drop-area">
+				<form class="my-form">
+					<label class="file-button" for="fileElem"
+						>Choose a file</label
+					>
+					<p>or drag it here to get started!</p>
+					<p id="fail"></p>
 					<input
-						type="checkbox"
-						id="shuffle-toggle"
-						name="toggle"
-						checked
+						type="file"
+						id="fileElem"
+						accept=".pc,.psp,.ps2,.PC,.PSP,.PS2"
+						onchange="handleFiles(this.files)"
 					/>
-					<label for="shuffle-toggle">Shuffle</label>
-					<span class="control"></span>
-				</label>
-				<form>
-					<div class="function-buttons">
-						<label class="container">
-							<input
-								type="checkbox"
-								id="shuffle-lines"
-								name="shuffle"
-								value="lines"
-								checked
-							/>
-							<label for="shuffle-lines">Lines</label>
-							<span class="check checkmark-checkbox"></span>
-						</label>
-						<label class="container">
-							<input
-								type="checkbox"
-								id="shuffle-words"
-								name="shuffle"
-								value="words"
-							/>
-							<label for="shuffle-words">Words</label>
-							<span class="check checkmark-checkbox"></span>
-						</label>
-					</div>
 				</form>
 			</div>
-			<div id="color" hidden>
-				<label class="toggle-control">
-					<input
-						type="checkbox"
-						id="color-toggle"
-						name="toggle"
-						checked
-					/>
-					<label for="color-toggle">Colorize</label>
-					<span class="control"></span>
-				</label>
-				<form>
-					<div class="function-buttons">
-						<label class="container">
-							<input
-								type="radio"
-								name="color"
-								id="color-lines"
-								value="lines"
-								checked
-							/>
-							<label for="color-lines">Lines</label>
-							<span class="check checkmark-radio"></span>
-						</label>
-						<label class="container">
-							<input
-								type="radio"
-								name="color"
-								id="color-words"
-								value="words"
-							/>
-							<label for="color-words">Words</label>
-							<span class="check checkmark-radio"></span>
-						</label>
-						<label class="container">
-							<input
-								type="radio"
-								name="color"
-								id="color-letters"
-								value="letters"
-							/>
-							<label for="color-letters">Letters</label>
-							<span class="check checkmark-radio"></span>
-						</label>
-					</div>
-				</form>
+			<div id="functions">
+				<div id="shuffle" hidden>
+					<label class="switch">
+						<input
+							type="checkbox"
+							id="shuffle-toggle"
+							name="toggle"
+							checked
+						/>
+						<span class="slider"></span>
+						<label for="shuffle-toggle">Shuffle</label>
+					</label>
+					<form>
+						<div class="function-buttons">
+							<label class="container">
+								<input
+									type="checkbox"
+									id="shuffle-lines"
+									name="shuffle"
+									value="lines"
+									checked
+								/>
+								<label for="shuffle-lines">Lines</label>
+								<span class="check box"></span>
+							</label>
+							<label class="container">
+								<input
+									type="checkbox"
+									id="shuffle-words"
+									name="shuffle"
+									value="words"
+								/>
+								<label for="shuffle-words">Words</label>
+								<span class="check box"></span>
+							</label>
+						</div>
+					</form>
+				</div>
+				<div id="color" hidden>
+					<label class="switch">
+						<input
+							type="checkbox"
+							id="color-toggle"
+							name="toggle"
+							checked
+						/>
+						<span class="slider"></span>
+						<label for="color-toggle">Colorize</label>
+					</label>
+					<form>
+						<div class="function-buttons">
+							<label class="container">
+								<input
+									type="radio"
+									name="color"
+									id="color-lines"
+									value="lines"
+									checked
+								/>
+								<label for="color-lines">Lines</label>
+								<span class="check radio"></span>
+							</label>
+							<label class="container">
+								<input
+									type="radio"
+									name="color"
+									id="color-words"
+									value="words"
+								/>
+								<label for="color-words">Words</label>
+								<span class="check radio"></span>
+							</label>
+							<label class="container">
+								<input
+									type="radio"
+									name="color"
+									id="color-letters"
+									value="letters"
+								/>
+								<label for="color-letters">Letters</label>
+								<span class="check radio"></span>
+							</label>
+						</div>
+					</form>
+				</div>
 			</div>
-		</div>
-		<div class="center-div">
-			<button id="download" hidden>Download</button>
-		</div>
+			<div id="preview">
+				<img src="images/preview2.png" alt="in-game preview" />
+				<p></p>
+			</div>
+			<div class="center-div">
+				<button id="download" hidden>Download</button>
+			</div>
+		</main>
+		<script src="js/MALaF.js" async defer></script>
 	</body>
-	<script src="js/MALaF.js"></script>
 </html>
