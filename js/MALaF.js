@@ -126,11 +126,6 @@ function handleDrop(e) {
 }
 
 function handleFiles(files) {
-	[...functions.children].forEach((child) => {
-		child.hidden = false;
-	});
-	downloadButton.hidden = false;
-	dropArea.style.display = "none";
 	readFile(files[0]);
 }
 
@@ -143,11 +138,16 @@ function readFile(file) {
 			ext.includes(file.name.split(".")[file.name.split(".").length - 1])
 		) {
 			if (lines.map((string) => string.trim()).includes("FreeLanguage")) {
+				[...functions.children].forEach((child) => {
+					child.hidden = false;
+				});
+				downloadButton.hidden = false;
+				dropArea.style.display = "none";
 				failText.style.display = "none";
 				name = file.name;
 				contents = lines;
 				currentModifiers = [shuffleLines, colorLines];
-				// downloadFile(file.name);
+				updatePreview();
 			} else {
 				failText.style.display = "initial";
 				failText.innerHTML =
@@ -181,10 +181,9 @@ function updatePreview() {
 			)}</p>`;
 		});
 	} else {
-		newText = text;
+		newHTML = text;
 	}
 	newHTML = newHTML.replace("~", "\n");
-	console.log(newText);
 	document.getElementById("preview").querySelector("p").innerHTML = newHTML;
 }
 

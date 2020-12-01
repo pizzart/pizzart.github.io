@@ -12,11 +12,6 @@ window.onload = function () {
 		"This is a random message.",
 		'<p style="color: cornflowerblue">Stay hydrated!',
 		"Have you seen every single message here?",
-		`<p>function randomInt(min, max) {</p>
-            <p>min = Math.ceil(min);</p>
-            <p>max = Math.floor(max);</p>
-            <p>return Math.floor(Math.random() * (max - min) + min);</p>
-        }`,
 		"There is a possibility you got the same message more than once in a row.",
 		`<a style="text-decoration: underline" href="https://youtu.be/dQw4w9WgXcQ"
         target="_blank">Does this link work?<a/>`,
