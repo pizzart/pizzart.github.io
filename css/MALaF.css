@@ -136,6 +136,7 @@
 }
 
 .switch label {
+	word-wrap: normal;
 	padding-left: 3em;
 }
 
@@ -172,20 +173,10 @@ input:checked + .slider:before {
 	transform: translateX(1em);
 }
 
-#preview {
-	font-size: 0.5em;
-	display: flexbox;
-}
-
 #preview p {
 	font-family: "handel-gothic";
-	display: flex;
-	position: relative;
 	letter-spacing: 0.034em;
-	bottom: 9.78em;
-	font-size: 0.8em;
-}
-
-#preview img {
-	width: 46.4em;
+	word-wrap: normal;
+	display: inline;
+	padding: 0;
 }

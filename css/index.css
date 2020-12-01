@@ -5,7 +5,6 @@
 	padding: 0;
 	text-decoration: none;
 	font-family: "Major Mono Display", monospace;
-	word-wrap: break-word;
 }
 
 body {
@@ -16,7 +15,8 @@ body {
 }
 
 main {
-	padding-top: 3em;
+	word-wrap: break-word;
+	padding-top: 1.2em;
 	margin-inline: 10vw;
 }
 

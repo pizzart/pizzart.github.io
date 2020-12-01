@@ -169,21 +169,23 @@ function updatePreview() {
 	for (const modifier of currentModifiers) {
 		text = modifier(text);
 	}
-	text = getSubStr(text[1414], '"');
+	text = getSubStr(text[1415], '"');
 	let newText = /\^\d{3}/.test(text);
 	let newHTML = new String();
 	if (newText) {
-		newText = text.match(/(\^\d{3})(.*)/g);
+		newText = text.match(/(\^\d{3})(.[^\^]*)(\^\d{3})(\s*)/g);
 		[...newText].forEach((str) => {
-			newHTML += `<p style="color: #${str.slice(1, 4)}">${str.slice(
-				4,
-				-4
+			newHTML += `<p style="color: #${str.match(/\d{3}/)}">${str.replace(
+				/\^\d{3}/g,
+				""
 			)}</p>`;
 		});
+		newHTML = newHTML.replace(/\^/g, "");
+		console.log(newText, newHTML);
 	} else {
 		newHTML = text;
 	}
-	newHTML = newHTML.replace("~", "\n");
+	newHTML = newHTML.replace(/~/g, "<br>");
 	document.getElementById("preview").querySelector("p").innerHTML = newHTML;
 }
 
@@ -221,7 +223,8 @@ function shuffleLines(fileLines) {
 
 	for (const line of fileLines) {
 		numbers.push(line.split(" ")[1]);
-		lines.push(getSubStr(line, '"'));
+		if (!["$", ""].includes(getSubStr(line, '"').trim()))
+			lines.push(getSubStr(line, '"'));
 	}
 
 	lines = shuffleArray(lines);
@@ -295,9 +298,11 @@ function colorWords(fileLines) {
 		});
 		let colorLine = new String();
 		for (const word of newLine) {
-			let color = String(randomInt(0, 999));
-			color = "0".repeat(3 - color.length) + color;
-			colorLine += `^${color + word}^000 `;
+			if (word.slice(3) != "STR") {
+				let color = String(randomInt(0, 999));
+				color = "0".repeat(3 - color.length) + color;
+				colorLine += `^${color + word}^000 `;
+			}
 		}
 		lines.push(colorLine);
 	}
@@ -340,13 +345,25 @@ function colorLetters(fileLines) {
 					continue;
 				}
 			}
-			if (
-				`${colorLine}^000${newLine[c]}^000`.length <= 100 &&
-				newLine[c] != " "
-			) {
+			if (newLine[c] != " ") {
 				let color = String(randomInt(0, 999));
 				color = "0".repeat(3 - color.length) + color;
-				colorLine = `${colorLine}^${color + newLine[c]}^000`;
+				if (
+					`${colorLine}${newLine.replace(
+						colorLine.replace(/\^\d{3}/g, ""),
+						""
+					)}`.length +
+						16 <=
+					1000
+				) {
+					colorLine = `${colorLine}^${color + newLine[c]}^000`;
+				} else {
+					colorLine = `${colorLine}^${
+						color +
+						newLine.replace(colorLine.replace(/\^\d{3}/g, ""), "")
+					}^000`;
+					break;
+				}
 			} else {
 				colorLine += newLine[c];
 			}
