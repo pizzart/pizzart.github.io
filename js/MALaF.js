@@ -170,7 +170,10 @@ function updatePreview() {
 		text = modifier(text);
 	}
 	text = getSubStr(text[1415], '"');
+	console.log("");
+	console.log(text);
 	let newText = /\^\d{3}/.test(text);
+	console.log(newText);
 	let newHTML = new String();
 	if (newText) {
 		newText = text.match(/(\^\d{3})(.[^\^]*)(\^\d{3})(\s*)/g);
@@ -181,11 +184,15 @@ function updatePreview() {
 			)}</p>`;
 		});
 		newHTML = newHTML.replace(/\^/g, "");
-		console.log(newText, newHTML);
+		newHTML = newHTML.replace(
+			/<p style="color: #\d{3}">\s*(\d|\^)\s*<\/p>/g,
+			""
+		);
 	} else {
 		newHTML = text;
 	}
 	newHTML = newHTML.replace(/~/g, "<br>");
+	console.log(newHTML);
 	document.getElementById("preview").querySelector("p").innerHTML = newHTML;
 }
 

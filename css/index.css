@@ -9,7 +9,7 @@
 
 body {
 	color: whitesmoke;
-	font-size: 2.5vmax;
+	font-size: calc(0.5vw + 2vh + 0.5vmin);
 	background: #0a040a;
 	text-align: center;
 }

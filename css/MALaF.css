@@ -174,7 +174,7 @@ input:checked + .slider:before {
 }
 
 #preview p {
-	font-family: "handel-gothic";
+	font-family: "handel-gothic", monospace;
 	letter-spacing: 0.034em;
 	word-wrap: normal;
 	display: inline;
