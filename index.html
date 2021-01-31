@@ -1,30 +1,129 @@
 <!DOCTYPE html>
-
 <html lang="en">
-	<head>
-		<link rel="stylesheet" href="css/index.css" />
-		<link rel="icon" href="images/pizza.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content="PizzArt." />
-		<title>PizzArt</title>
-	</head>
-	<body>
-		<header id="navbar">
-			<a href="index.html">
-				<img class="icon" src="images/pizza.svg" alt="" />
-			</a>
-			<nav>
-				<ul>
-					<li><a href="MALaF.html">MALaF</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</nav>
-		</header>
-		<main>
-			<h1>PizzArt</h1>
-			<h3 id="tip"></h2>
-		</main>
-		<script src="js/index.js"></script>
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Hello." />
+        <link rel="stylesheet" href="/css/styles.css" />
+        <link rel="icon" href="/images/pizza.svg" type="image/x-icon" />
+        <title>PizzArt</title>
+    </head>
+
+    <body>
+        <header class="navbar">
+            <a href=""><img src="/images/pizza.svg" alt="" /></a>
+            <p id="tip"></p>
+        </header>
+        <article id="title-desc">
+            <h2>Edit an Asobo Text Translation/Parameter Property file</h2>
+            <h4 style="color: gray"></h4>
+        </article>
+        <div id="drop-area">
+            <form class="my-form">
+                <label class="file-button" for="fileElem">Choose a file</label>
+                <p>or drag it here to get started!</p>
+                <p id="fail"></p>
+                <input
+                    type="file"
+                    id="fileElem"
+                    accept=".pc,.psp,.ps2,.tsc"
+                    onchange="handleFiles(this.files)"
+                />
+            </form>
+        </div>
+        <div id="functions">
+            <div id="shuffle" hidden>
+                <label class="switch">
+                    <input
+                        type="checkbox"
+                        id="shuffle-toggle"
+                        name="toggle"
+                        checked
+                    />
+                    <span class="slider"></span>
+                    <label for="shuffle-toggle">Shuffle</label>
+                </label>
+                <form>
+                    <div class="function-buttons">
+                        <label class="container">
+                            <input
+                                type="checkbox"
+                                id="shuffle-lines"
+                                name="shuffle"
+                                value="lines"
+                                checked
+                            />
+                            <label for="shuffle-lines">Lines</label>
+                            <span class="check box"></span>
+                        </label>
+                        <label class="container">
+                            <input
+                                type="checkbox"
+                                id="shuffle-words"
+                                name="shuffle"
+                                value="words"
+                            />
+                            <label for="shuffle-words">Words</label>
+                            <span class="check box"></span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div id="color" hidden>
+                <label class="switch">
+                    <input
+                        type="checkbox"
+                        id="color-toggle"
+                        name="toggle"
+                        checked
+                    />
+                    <span class="slider"></span>
+                    <label for="color-toggle">Colorize</label>
+                </label>
+                <form>
+                    <div class="function-buttons">
+                        <label class="container">
+                            <input
+                                type="radio"
+                                name="color"
+                                id="color-lines"
+                                value="lines"
+                                checked
+                            />
+                            <label for="color-lines">Lines</label>
+                            <span class="check radio"></span>
+                        </label>
+                        <label class="container">
+                            <input
+                                type="radio"
+                                name="color"
+                                id="color-words"
+                                value="words"
+                            />
+                            <label for="color-words">Words</label>
+                            <span class="check radio"></span>
+                        </label>
+                        <label class="container">
+                            <input
+                                type="radio"
+                                name="color"
+                                id="color-letters"
+                                value="letters"
+                            />
+                            <label for="color-letters">Letters</label>
+                            <span class="check radio"></span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="preview">
+            <p></p>
+        </div>
+        <div class="center-div">
+            <button id="download" hidden>Download</button>
+        </div>
+        <script src="/js/index.js" async defer></script>
+        <script src="js/editors.js" async defer></script>
+    </body>
 </html>
