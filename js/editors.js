@@ -228,13 +228,11 @@ function shuffleLines(fileLines) {
 
     for (const line of fileLines) {
         numbers.push(line.split(" ")[1]);
-        if (!["$", ""].includes(getSubStr(line, '"').trim()))
-            lines.push(getSubStr(line, '"'));
+        lines.push(getSubStr(line, '"'));
     }
 
     lines = shuffleArray(lines);
 
-    newLines.push("FreeLanguage");
     for (const i in numbers) {
         if (numbers[i] != undefined) {
             newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
@@ -256,7 +254,6 @@ function shuffleWords(fileLines) {
         lines.push(newLine);
     }
 
-    newLines.push("FreeLanguage");
     for (const i in numbers) {
         if (numbers[i] != undefined) {
             newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
@@ -280,7 +277,6 @@ function colorLines(fileLines) {
         lines.push(`^${color + newLine}^000`);
     }
 
-    newLines.push("FreeLanguage");
     for (const i in numbers) {
         if (numbers[i] != undefined) {
             newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
@@ -312,7 +308,6 @@ function colorWords(fileLines) {
         lines.push(colorLine);
     }
 
-    newLines.push("FreeLanguage");
     for (const i in numbers) {
         if (numbers[i] != undefined) {
             newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
@@ -376,7 +371,6 @@ function colorLetters(fileLines) {
         lines.push(colorLine);
     }
 
-    newLines.push("FreeLanguage");
     for (const i in numbers) {
         if (numbers[i] != undefined) {
             newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
@@ -426,7 +420,7 @@ function getFile(filename, useModifiers = true) {
 
     download(filename, text);
 
-    location.reload();
+    // location.reload();
 }
 
 function download(filename, text) {
