@@ -1,7 +1,5 @@
 let contents = new Array();
 let name = new String();
-const extt = ["pc", "psp", "ps2"];
-const extp = ["tsc"];
 const modifiers = new Map([
     ["shufflelines", shuffleLines],
     ["shufflewords", shuffleWords],
@@ -103,7 +101,7 @@ dropArea.addEventListener("drop", handleDrop, false);
 });
 
 downloadButton.addEventListener("click", function (e) {
-    downloadFile(name);
+    getFile(name);
     e.preventDefault();
 });
 
@@ -136,87 +134,32 @@ function readFile(file) {
     reader.onload = function () {
         let lines = reader.result.split("\n");
 
-        if (
-            extt.includes(
-                file.name
-                    .split(".")
-                    [file.name.split(".").length - 1].toLowerCase()
-            )
-        ) {
-            if (lines.map((string) => string.trim()).includes("FreeLanguage")) {
-                [...functions.children].forEach((child) => {
-                    child.hidden = false;
-                });
-                titleDesc.querySelector("h2").innerHTML = "MALaF";
-                titleDesc.querySelector("h4").innerHTML =
-                    "(Modifier for Asobo Language Files)";
-                downloadButton.hidden = false;
-                dropArea.style.display = "none";
-                failText.style.display = "none";
-                name = file.name;
-                contents = lines;
-                currentModifiers = [shuffleLines, colorLines];
-                updatePreview();
-            } else {
-                failText.style.display = "initial";
-                failText.innerHTML =
-                    'It seems like there isn\'t a "FreeLanguage" line here. \
-                Are you sure this is an Asobo Language File?';
-            }
+        if (lines.map((string) => string.trim().split(" ")[0]).includes("TT")) {
+            [...functions.children].forEach((child) => {
+                child.hidden = false;
+            });
+            titleDesc.querySelector("h2").innerHTML = "MALaF";
+            titleDesc.querySelector("h4").innerHTML =
+                "(Modifier for Asobo Language Files)";
+            downloadButton.hidden = false;
+            dropArea.style.display = "none";
+            failText.style.display = "none";
+            name = file.name;
+            contents = lines;
+            currentModifiers = [shuffleLines, colorLines];
+            updatePreview();
         } else if (
-            extp.includes(
-                file.name
-                    .split(".")
-                    [file.name.split(".").length - 1].toLowerCase()
-            )
+            lines.map((string) => string.trim().split(" ")[0]).includes("PP")
         ) {
-            if (
-                lines
-                    .map((string) => string.trim().split(" ")[0])
-                    .includes("PP")
-            ) {
-                contents = randomizeParam(lines);
-                downloadFile(file.name, false);
-            } else {
-                failText.style.display = "initial";
-                failText.innerHTML =
-                    "It seems like this isn't a PP file. It cannot be edited.";
-            }
+            contents = randomizeParam(lines);
+            getFile(file.name, false);
         } else {
             failText.style.display = "initial";
             failText.innerHTML =
-                "Files with this extension cannot be edited. Are you sure this is an Asobo Language/Parameter file?";
+                "This file contains neither a TT nor a PP line. Are you sure this is an Asobo Translation/Parameter file?";
         }
     };
     reader.readAsText(file);
-}
-
-function updatePreview() {
-    let text = contents;
-    for (const modifier of currentModifiers) {
-        text = modifier(text);
-    }
-    text = getSubStr(text[1415], '"');
-    let newText = new String();
-    let preview = new String();
-    if (/\^\d{3}/.test(text)) {
-        newText = text.match(/(\^\d{3})(.[^\^]*)(\^\d{3})(\s*)/g);
-        [...newText].forEach((str) => {
-            preview += `<p style="color: #${str.match(/\d{3}/)}">${str.replace(
-                /\^\d{3}/g,
-                ""
-            )}</p>`;
-        });
-        preview = preview.replace(/\^/g, "");
-        preview = preview.replace(
-            /<p style="color: #\d{3}">\s*(\d|\^)\s*<\/p>/g,
-            ""
-        );
-    } else {
-        preview = text;
-    }
-    preview = preview.replace(/~/g, "<br>");
-    document.getElementById("preview").querySelector("p").innerHTML = preview;
 }
 
 function shuffleArray(array) {
@@ -248,6 +191,34 @@ function randomInt(min, max) {
 
 function randomFloat(min, max) {
     return Math.random() * (max - min) + min;
+}
+
+function updatePreview() {
+    let text = contents;
+    for (const modifier of currentModifiers) {
+        text = modifier(text);
+    }
+    text = getSubStr(text[1415], '"');
+    let newText = new String();
+    let preview = new String();
+    if (/\^\d{3}/.test(text)) {
+        newText = text.match(/(\^\d{3})(.[^\^]*)(\^\d{3})(\s*)/g);
+        [...newText].forEach((str) => {
+            preview += `<p style="color: #${str.match(/\d{3}/)}">${str.replace(
+                /\^\d{3}/g,
+                ""
+            )}</p>`;
+        });
+        preview = preview.replace(/\^/g, "");
+        preview = preview.replace(
+            /<p style="color: #\d{3}">\s*(\d|\^)\s*<\/p>/g,
+            ""
+        );
+    } else {
+        preview = text;
+    }
+    preview = preview.replace(/~/g, "<br>");
+    document.getElementById("preview").querySelector("p").innerHTML = preview;
 }
 
 function shuffleLines(fileLines) {
@@ -441,7 +412,7 @@ function randomizeParam(fileLines) {
     return newLines;
 }
 
-function downloadFile(filename, useModifiers = true) {
+function getFile(filename, useModifiers = true) {
     let lines = contents;
     if (useModifiers) {
         for (const modifier of currentModifiers) {
@@ -452,24 +423,24 @@ function downloadFile(filename, useModifiers = true) {
     for (const line of lines) {
         text += `${line}\n`;
     }
-    let file = new Blob([text], { type: "text/plain" });
 
-    let downloadLink = document.createElement("a");
-    downloadLink.download = filename;
-    downloadLink.innerHTML = "Download File";
+    download(filename, text);
 
-    // Chromium-based
-    // downloadLink.href = window.webkitURL.createObjectURL(file);
-
-    // Firefox + Chromium
-    downloadLink.href = window.URL.createObjectURL(file);
-    downloadLink.onclick = downloadLink.remove();
-    downloadLink.style.display = "none";
-    document.body.appendChild(downloadLink);
-
-    downloadLink.click();
-
-    contents = [];
-    currentModifiers = [];
     location.reload();
+}
+
+function download(filename, text) {
+    var element = document.createElement("a");
+    element.setAttribute(
+        "href",
+        "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+    );
+    element.setAttribute("download", filename);
+
+    element.style.display = "none";
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
 }
