@@ -193,107 +193,97 @@ function randomFloat(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+function createLines(ext, numbers, lines) {
+    let newLines = new Array();
+
+    for (const i in numbers) {
+        if (numbers[i] != undefined) {
+            newLines.push(`${ext} ${numbers[i]} "${lines[i]}"`);
+        }
+    }
+
+    return newLines;
+}
+
 function updatePreview() {
     let text = contents;
     for (const modifier of currentModifiers) {
         text = modifier(text);
     }
-    text = getSubStr(text[1415], '"');
+    text = getSubStr(text[randomInt(0, text.length - 1)], '"');
     let newText = new String();
     let preview = new String();
     if (/\^\d{3}/.test(text)) {
         newText = text.match(/(\^\d{3})(.[^\^]*)(\^\d{3})(\s*)/g);
-        [...newText].forEach((str) => {
-            preview += `<p style="color: #${str.match(/\d{3}/)}">${str.replace(
-                /\^\d{3}/g,
+        if (newText != null) {
+            [...newText].forEach((str) => {
+                preview += `<p style="color: #${str.match(
+                    /\d{3}/
+                )}">${str.replace(/\^\d{3}/g, "")}</p>`;
+            });
+            preview = preview.replace(/\^/g, "");
+            preview = preview.replace(
+                /<p style="color: #\d{3}">\s*(\d|\^)\s*<\/p>/g,
                 ""
-            )}</p>`;
-        });
-        preview = preview.replace(/\^/g, "");
-        preview = preview.replace(
-            /<p style="color: #\d{3}">\s*(\d|\^)\s*<\/p>/g,
-            ""
-        );
+            );
+        }
     } else {
         preview = text;
     }
     preview = preview.replace(/~/g, "<br>");
+    preview = "Random line preview with WALL-E in-game font:<br>" + preview;
     document.getElementById("preview").querySelector("p").innerHTML = preview;
 }
 
 function shuffleLines(fileLines) {
-    let newLines = new Array();
     let numbers = new Array();
     let lines = new Array();
 
     for (const line of fileLines) {
-        numbers.push(line.split(" ")[1]);
+        numbers.push(line.trim().split(" ")[1]);
         lines.push(getSubStr(line, '"'));
     }
 
-    lines = shuffleArray(lines);
-
-    for (const i in numbers) {
-        if (numbers[i] != undefined) {
-            newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
-        }
-    }
-
-    return newLines;
+    return createLines("TT", numbers, shuffleArray(lines));
 }
 
 function shuffleWords(fileLines) {
-    let newLines = new Array();
     let numbers = new Array();
     let lines = new Array();
 
     for (const line of fileLines) {
-        numbers.push(line.split(" ")[1]);
+        numbers.push(line.trim().split(" ")[1]);
         let newLine = getSubStr(line, '"');
-        newLine = shuffleArray(newLine.split(" ")).join(" ");
+        newLine = shuffleArray(newLine.trim().split(" ")).join(" ");
         lines.push(newLine);
     }
 
-    for (const i in numbers) {
-        if (numbers[i] != undefined) {
-            newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
-        }
-    }
-
-    return newLines;
+    return createLines("TT", numbers, lines);
 }
 
 function colorLines(fileLines) {
-    let newLines = new Array();
     let numbers = new Array();
     let lines = new Array();
 
     for (const line of fileLines) {
         let color = String(randomInt(0, 999));
         color = "0".repeat(3 - color.length) + color;
-        numbers.push(line.split(" ")[1]);
+        numbers.push(line.trim().split(" ")[1]);
         let newLine = getSubStr(line, '"');
         newLine = newLine.replace(newLine.match(/\^\d{3}/), "");
         lines.push(`^${color + newLine}^000`);
     }
 
-    for (const i in numbers) {
-        if (numbers[i] != undefined) {
-            newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
-        }
-    }
-
-    return newLines;
+    return createLines("TT", numbers, lines);
 }
 
 function colorWords(fileLines) {
-    let newLines = new Array();
     let numbers = new Array();
     let lines = new Array();
 
     for (const line of fileLines) {
-        numbers.push(line.split(" ")[1]);
-        let newLine = getSubStr(line, '"').split(" ");
+        numbers.push(line.trim().split(" ")[1]);
+        let newLine = getSubStr(line, '"').trim().split(" ");
         [...newLine].forEach((spl) => {
             spl = spl.replace(spl.match(/\^\d{3}/), "");
         });
@@ -308,22 +298,15 @@ function colorWords(fileLines) {
         lines.push(colorLine);
     }
 
-    for (const i in numbers) {
-        if (numbers[i] != undefined) {
-            newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
-        }
-    }
-
-    return newLines;
+    return createLines("TT", numbers, lines);
 }
 
 function colorLetters(fileLines) {
-    let newLines = new Array();
     let numbers = new Array();
     let lines = new Array();
 
     for (const line of fileLines) {
-        numbers.push(line.split(" ")[1]);
+        numbers.push(line.trim().split(" ")[1]);
         let newLine = getSubStr(line, '"');
         newLine = newLine.replace(newLine.match(/\^\d{3}/), "");
         let colorLine = new String();
@@ -371,39 +354,30 @@ function colorLetters(fileLines) {
         lines.push(colorLine);
     }
 
-    for (const i in numbers) {
-        if (numbers[i] != undefined) {
-            newLines.push(`TT ${numbers[i]} "${lines[i]}"`);
-        }
-    }
-    return newLines;
+    return createLines("TT", numbers, lines);
 }
 
 function randomizeParam(fileLines) {
-    let newLines = new Array();
     let numbers = new Array();
     let values = new Array();
+    let ext = new String();
 
     for (const line of fileLines) {
-        if (line.trim() != "") {
-            numbers.push(line.split(" ")[1]);
+        if ((line.trim() != "") & (line.trim()[0] != "/")) {
+            let splitLine = line.trim().split(" ");
+            numbers.push(splitLine[1]);
             let newValue = new String();
-            if (line.split(" ")[2][0] != '"') {
+            if (splitLine[2][0] != '"') {
                 newValue = String(randomFloat(0, 100).toFixed(2));
             } else {
-                newValue = line.split(" ")[2];
+                newValue = splitLine[2];
             }
+            ext = splitLine[0];
             values.push(newValue);
         }
     }
 
-    for (const i in numbers) {
-        if (numbers[i] != undefined) {
-            newLines.push(`PP ${numbers[i]} ${values[i]}`);
-        }
-    }
-
-    return newLines;
+    return createLines(ext, numbers, values);
 }
 
 function getFile(filename, useModifiers = true) {
