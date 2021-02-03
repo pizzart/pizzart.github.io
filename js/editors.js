@@ -1,5 +1,5 @@
 let contents = new Array();
-let name = new String();
+let filename = new String();
 const modifiers = new Map([
     ["shufflelines", shuffleLines],
     ["shufflewords", shuffleWords],
@@ -9,6 +9,7 @@ const modifiers = new Map([
 ]);
 let currentModifiers = new Array();
 let disabledModifiers = new Array();
+let randomLineNum = new Number();
 const dropArea = document.getElementById("drop-area");
 const failText = document.getElementById("fail");
 const functions = document.getElementById("functions");
@@ -101,7 +102,7 @@ dropArea.addEventListener("drop", handleDrop, false);
 });
 
 downloadButton.addEventListener("click", function (e) {
-    getFile(name);
+    getFile(filename);
     e.preventDefault();
 });
 
@@ -144,9 +145,10 @@ function readFile(file) {
             downloadButton.hidden = false;
             dropArea.style.display = "none";
             failText.style.display = "none";
-            name = file.name;
+            filename = file.name;
             contents = lines;
-            currentModifiers = [shuffleLines, colorLines];
+            currentModifiers = [colorLines];
+            randomLineNum = randomInt(0, contents.length - 1);
             updatePreview();
         } else if (
             lines.map((string) => string.trim().split(" ")[0]).includes("PP")
@@ -210,7 +212,7 @@ function updatePreview() {
     for (const modifier of currentModifiers) {
         text = modifier(text);
     }
-    text = getSubStr(text[randomInt(0, text.length - 1)], '"');
+    text = getSubStr(text[randomLineNum], '"');
     let newText = new String();
     let preview = new String();
     if (/\^\d{3}/.test(text)) {
@@ -394,16 +396,13 @@ function getFile(filename, useModifiers = true) {
 
     download(filename, text);
 
-    // location.reload();
+    location.reload();
 }
 
-function download(filename, text) {
+function download(name, text) {
     var element = document.createElement("a");
-    element.setAttribute(
-        "href",
-        "data:text/plain;charset=utf-8," + encodeURIComponent(text)
-    );
-    element.setAttribute("download", filename);
+    element.setAttribute("href", "data:text/plain" + encodeURIComponent(text));
+    element.setAttribute("download", name);
 
     element.style.display = "none";
     document.body.appendChild(element);
