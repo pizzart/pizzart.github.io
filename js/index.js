@@ -14,7 +14,6 @@ window.onload = function () {
         "You have loaded this page " +
             String(sessionStorage.reloads) +
             " time(s).",
-        "Poggers!",
         "It took longer to write all of the messages than to actually code this function in.",
         `There are ${sessionStorage.amount} messages you can get, including this one.`,
         "MALaF was initially started out as a Python script, now it's regrown into a web application.",
