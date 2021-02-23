@@ -399,15 +399,30 @@ function getFile(filename, useModifiers = true) {
     location.reload();
 }
 
-function download(name, text) {
-    var element = document.createElement("a");
-    element.setAttribute("href", "data:text/plain" + encodeURIComponent(text));
-    element.setAttribute("download", name);
+// function download(name, text) {
+//     var element = document.createElement("a");
+//     element.setAttribute("href", "data:text/plain" + encodeURIComponent(text));
+//     element.setAttribute("download", name);
 
-    element.style.display = "none";
-    document.body.appendChild(element);
+//     element.style.display = "none";
+//     document.body.appendChild(element);
 
-    element.click();
+//     element.click();
 
-    document.body.removeChild(element);
+//     document.body.removeChild(element);
+// }
+
+function download(filename, data) {
+    var blob = new Blob([data], { type: "text/plain" });
+    if (window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveBlob(blob, filename);
+    } else {
+        var elem = window.document.createElement("a");
+        elem.href = window.URL.createObjectURL(blob);
+        elem.download = filename;
+        document.body.appendChild(elem);
+        elem.click();
+        document.body.removeChild(elem);
+        elem.href = window.URL.revokeObjectURL(blob);
+    }
 }
