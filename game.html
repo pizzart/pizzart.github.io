@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/styles.css" />
+		<link rel="stylesheet" href="/css/game.css" />
+		<link rel="icon" href="/images/pizza.svg" type="image/x-icon" />
+		<title>Make Your Own Pizza</title>
+	</head>
+
+	<body>
+		<main>
+			<div id="images">
+				<img src="images/game/none.png" alt="bg" id="pizzabg" />
+				<img
+					src="images/game/bases/chilling.png"
+					alt="base"
+					id="pizzabase"
+				/>
+				<img
+					src="images/game/toppings/pepperoni.png"
+					alt="topping"
+					id="pizzatopping"
+				/>
+				<img
+					src="images/game/faces/vibing.png"
+					alt="face"
+					id="pizzaface"
+				/>
+				<img src="images/game/none.png" alt="hat" id="pizzahat" />
+			</div>
+			<div id="options">
+				<div id="base">
+					<label for="base">Base</label>
+					<select name="base" id="base-select">
+						<option value="chilling">Chilling</option>
+						<option value="spooky">Spooky</option>
+						<option value="celebrating">Celebrating</option>
+						<option value="drunk">Drunk</option>
+						<option value="blooming">Blooming</option>
+						<option value="fooling">April Fools</option>
+					</select>
+				</div>
+				<div id="topping">
+					<label for="topping">Topping</label>
+					<select name="topping" id="topping-select">
+						<option value="pepperoni">Pepperoni</option>
+						<option value="graycheeze">Gray Cheeze</option>
+						<option value="cheeze">Cheeze</option>
+						<option value="drunkcheeze">Drunk Cheeze</option>
+						<option value="springy">Springy Flavour</option>
+						<option value="none">No topping</option>
+					</select>
+				</div>
+				<div id="face">
+					<label for="face">Face</label>
+					<select name="face" id="face-select">
+						<option value="vibing">Vibing</option>
+						<option value="sanspire">Vampire Sans</option>
+						<option value="drunken">Drunk</option>
+						<option value="uwu">uwu</option>
+					</select>
+				</div>
+				<div id="hat">
+					<label for="hat">Hat</label>
+					<select name="hat" id="hat-select">
+						<option value="ears">Ears</option>
+						<option value="festive">Festive</option>
+						<option value="startext">Drunk</option>
+						<option value="none" selected>No hat</option>
+					</select>
+				</div>
+				<div id="bg">
+					<label for="bg">Additional</label>
+					<select name="bg" id="bg-select">
+						<option value="brain">Brain</option>
+						<option value="branches">Branches</option>
+						<option value="hat">Christmas hat</option>
+						<option value="none" selected>
+							No additional stuff
+						</option>
+					</select>
+				</div>
+			</div>
+		</main>
+		<script src="js/game.js" async defer></script>
+	</body>
+</html>
