@@ -1,2 +1,1 @@
-# pizzart.github.io
-My personal website.
+pizzart.github.io
