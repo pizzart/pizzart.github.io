@@ -1,0 +1,25 @@
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+#images {
+    position: relative;
+}
+
+#images * {
+    max-width: 25vw;
+    position: absolute;
+}
+
+#options {
+    margin-top: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#options select {
+    margin-top: 0.1em;
+    width: 25vw;
+}

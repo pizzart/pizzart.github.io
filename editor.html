@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/input.css" />
+    <link rel="icon" href="/images/pizza.svg" type="image/x-icon" />
+    <title>Editor</title>
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="index.html"><img src="/images/pizza.svg" alt="" /></a>
+        <div>
+            <a href="editor.html"><img src="/images/editor.svg" alt="" /></a>
+            <a href="about.html"><img src="/images/about.svg" alt="" /></a>
+            <a href="game.html"><img src="/images/game.svg" alt="" /></a>
+        </div>
+    </header>
+    <main>
+        <h1 id="title-desc">Modify an Asobo Text Translation or Parameter Property file</h1>
+        <div id="drop-area">
+            <form>
+                <label class="file-button" for="fileElem">Choose a file</label>
+                <p>or drag it here to get started!</p>
+                <p id="fail"></p>
+                <input type="file" id="fileElem" onchange="handleFiles(this.files)" />
+            </form>
+        </div>
+        <div id="functions">
+            <div id="shuffle" hidden>
+                <label class="switch">
+                    <input type="checkbox" id="shuffle-toggle" name="toggle" />
+                    <span class="slider"></span>
+                    <label for="shuffle-toggle">Shuffle</label>
+                </label>
+                <form>
+                    <div class="function-buttons" hidden>
+                        <label class="container">
+                            <input type="checkbox" id="shuffle-lines" name="shuffle" value="lines" />
+                            <label for="shuffle-lines">Lines</label>
+                            <span class="check box"></span>
+                        </label>
+                        <label class="container">
+                            <input type="checkbox" id="shuffle-words" name="shuffle" value="words" />
+                            <label for="shuffle-words">Words</label>
+                            <span class="check box"></span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div id="color" hidden>
+                <label class="switch">
+                    <input type="checkbox" id="color-toggle" name="toggle" checked />
+                    <span class="slider"></span>
+                    <label for="color-toggle">Colorize</label>
+                </label>
+                <form>
+                    <div class="function-buttons">
+                        <label class="container">
+                            <input type="radio" name="color" id="color-lines" value="lines" checked />
+                            <label for="color-lines">Lines</label>
+                            <span class="check radio"></span>
+                        </label>
+                        <label class="container">
+                            <input type="radio" name="color" id="color-words" value="words" />
+                            <label for="color-words">Words</label>
+                            <span class="check radio"></span>
+                        </label>
+                        <label class="container">
+                            <input type="radio" name="color" id="color-letters" value="letters" />
+                            <label for="color-letters">Letters</label>
+                            <span class="check radio"></span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--<p id="preview"></p>-->
+        <p>Preview temporarily (hopefully) disabled</p>
+        <button id="download" hidden>Download</button>
+    </main>
+    <script src="/scripts/editor.js" async defer></script>
+    <script src="/scripts/events.js" async defer></script>
+</body>
+
+</html>

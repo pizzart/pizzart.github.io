@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+
+@font-face {
+    font-family: "handel-gothic";
+    src: url("/misc/handel-gothic-d-medium.otf");
+}
+
+:root {
+    --bg-color: #110010;
+    --overlay-color: rgba(0, 0, 0, 0.4);
+    --text-color: #ffdfff;
+    --accent-color: #e91e63;
+    --accentdark-color: #8b0e38;
+    --partial-color: #ed457d;
+    --accent2-color: #4c31eb;
+    --animation-duration: 0.3s;
+    font-family: "Major Mono Display", monospace;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 4.5vmin;
+    background: var(--bg-color);
+    text-align: center;
+}
+
+::selection {
+    background-color: var(--accent2-color);
+}
+
+body {
+    margin: 0;
+}
+
+h1,
+p {
+    margin: 0.2em;
+}
+
+main {
+    margin-inline: 10vw;
+}
+
+a:link {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color var(--animation-duration);
+}
+
+a:visited {
+    color: var(--accent-color);
+}
+
+a:hover {
+    color: var(--partial-color);
+}
+
+a:active {
+    color: var(--accentdark-color);
+}
+
+a img {
+    filter: brightness(1);
+    transition: filter var(--animation-duration);
+}
+
+a img:hover {
+    filter: brightness(0.75);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+select,
+button,
+.file-button {
+    background-color: var(--accent-color);
+    font: inherit;
+    color: var(--text-color);
+    border: none 0.08em;
+    padding: 0.2em;
+    padding-inline: 0.5em;
+    border-radius: 0.15em;
+    transition: background-color var(--animation-duration);
+}
+
+button:hover,
+.file-button:hover {
+    cursor: pointer;
+    background-color: var(--partial-color);
+}
+
+button:focus,
+.file-button:active {
+    background-color: var(--accentdark-color);
+}
+
+.navbar {
+    background-color: var(--overlay-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-inline: 0.3em;
+}
+
+.navbar img {
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    height: 1.2em;
+}
+
+#preview {
+    font-family: "handel-gothic", monospace;
+    font-weight: normal;
+    letter-spacing: 0.034em;
+    word-wrap: normal;
+    display: inline;
+    padding: 0;
+}

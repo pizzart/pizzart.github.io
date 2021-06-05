@@ -10,138 +10,18 @@ const modifiers = new Map([
 let currentModifiers = new Array();
 let disabledModifiers = new Array();
 let randomLineNum = new Number();
-const dropArea = document.getElementById("drop-area");
-const failText = document.getElementById("fail");
-const functions = document.getElementById("functions");
-const downloadButton = document.getElementById("download");
 const titleDesc = document.getElementById("title-desc");
-
-["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
-    dropArea.addEventListener(eventName, preventDefaults, false);
-});
-["dragenter", "dragover"].forEach((eventName) => {
-    dropArea.addEventListener(eventName, highlight, false);
-});
-["dragleave", "drop"].forEach((eventName) => {
-    dropArea.addEventListener(eventName, unhighlight, false);
-});
-
-dropArea.addEventListener("drop", handleDrop, false);
-
-[...functions.children].forEach((child) => {
-    let toggle = child.querySelector("input[name='toggle']");
-    toggle.addEventListener("change", () => {
-        child.querySelector(
-            "div[class='function-buttons']"
-        ).hidden = !toggle.checked;
-
-        if (!toggle.checked) {
-            [
-                ...Array.from(modifiers.keys()).filter((s) =>
-                    s.includes(child.id)
-                ),
-            ].forEach((func) => {
-                if (currentModifiers.includes(modifiers.get(func))) {
-                    currentModifiers.splice(
-                        currentModifiers.indexOf(modifiers.get(func)),
-                        1
-                    );
-                    disabledModifiers.push(modifiers.get(func));
-                }
-            });
-        } else {
-            [
-                ...Array.from(modifiers.keys()).filter((s) =>
-                    s.includes(child.id)
-                ),
-            ].forEach((func) => {
-                if (disabledModifiers.includes(modifiers.get(func))) {
-                    disabledModifiers.splice(
-                        disabledModifiers.indexOf(modifiers.get(func)),
-                        1
-                    );
-                    currentModifiers.push(modifiers.get(func));
-                }
-            });
-        }
-        updatePreview();
-    });
-});
-
-[...functions.children].forEach((child) => {
-    [...child.children[1].children[0].children].forEach((container) => {
-        container.children[0].addEventListener("change", () => {
-            let input = container.children[0];
-            if (input.name == "color") {
-                let form = functions.children[1].querySelector("form");
-                let inputs = form.querySelectorAll("input");
-                [...inputs].forEach((button) => {
-                    if (button.checked) {
-                        currentModifiers.splice(
-                            currentModifiers.indexOf(
-                                modifiers.get(button.name + button.value)
-                            ),
-                            1
-                        );
-                    }
-                });
-            }
-            if (input.checked) {
-                currentModifiers.push(modifiers.get(input.name + input.value));
-            } else {
-                currentModifiers.splice(
-                    currentModifiers.indexOf(
-                        modifiers.get(input.name + input.value)
-                    ),
-                    1
-                );
-            }
-            updatePreview();
-        });
-    });
-});
-
-downloadButton.addEventListener("click", function (e) {
-    getFile(filename);
-    e.preventDefault();
-});
-
-function preventDefaults(e) {
-    e.preventDefault();
-    e.stopPropagation();
-}
-
-function highlight(e) {
-    dropArea.classList.add("highlight");
-}
-
-function unhighlight(e) {
-    dropArea.classList.remove("highlight");
-}
-
-function handleDrop(e) {
-    let dt = e.dataTransfer;
-    let files = dt.files;
-
-    handleFiles(files);
-}
-
-function handleFiles(files) {
-    readFile(files[0]);
-}
 
 function readFile(file) {
     let reader = new FileReader();
-    reader.onload = function () {
+    reader.onload = function() {
         let lines = reader.result.split("\n");
 
-        if (lines.map((string) => string.trim().split(" ")[0]).includes("TT")) {
+        if (verifyFile(lines, "TT")) {
             [...functions.children].forEach((child) => {
                 child.hidden = false;
             });
-            titleDesc.querySelector("h2").innerHTML = "MALaF";
-            titleDesc.querySelector("h4").innerHTML =
-                "(Modifier for Asobo Language Files)";
+            titleDesc.innerHTML = "MALaF";
             downloadButton.hidden = false;
             dropArea.style.display = "none";
             failText.style.display = "none";
@@ -150,9 +30,7 @@ function readFile(file) {
             currentModifiers = [colorLines];
             randomLineNum = randomInt(0, contents.length - 1);
             updatePreview();
-        } else if (
-            lines.map((string) => string.trim().split(" ")[0]).includes("PP")
-        ) {
+        } else if (verifyFile(lines, "PP")) {
             contents = randomizeParam(lines);
             getFile(file.name, false);
         } else {
@@ -162,6 +40,10 @@ function readFile(file) {
         }
     };
     reader.readAsText(file);
+}
+
+function verifyFile(lines, check) {
+    return lines.map((string) => string.trim().split(" ")[0]).includes(check);
 }
 
 function shuffleArray(array) {
@@ -234,7 +116,7 @@ function updatePreview() {
     }
     preview = preview.replace(/~/g, "<br>");
     preview = "Random line preview with WALL-E in-game font:<br>" + preview;
-    document.getElementById("preview").querySelector("p").innerHTML = preview;
+    //document.getElementById("preview").innerHTML = preview;
 }
 
 function shuffleLines(fileLines) {
@@ -338,7 +220,7 @@ function colorLetters(fileLines) {
                         colorLine.replace(/\^\d{3}/g, ""),
                         ""
                     )}`.length +
-                        16 <=
+                    16 <=
                     1000
                 ) {
                     colorLine = `${colorLine}^${color + newLine[c]}^000`;
@@ -413,7 +295,9 @@ function getFile(filename, useModifiers = true) {
 // }
 
 function download(filename, data) {
-    var blob = new Blob([data], { type: "text/plain" });
+    var blob = new Blob([data], {
+        type: "text/plain"
+    });
     if (window.navigator.msSaveOrOpenBlob) {
         window.navigator.msSaveBlob(blob, filename);
     } else {

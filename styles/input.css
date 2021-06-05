@@ -1,0 +1,162 @@
+#drop-area {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 0.4em;
+    border: 0.1em dashed var(--text-color);
+    border-radius: 0.1em;
+    width: 60vw;
+    padding: 0.1em;
+    transition: all 0.2s;
+}
+
+#drop-area.highlight {
+    border-color: var(--accent-color);
+}
+
+#drop-area * {
+    display: inline-block;
+    margin: 0.1em;
+}
+
+#fileElem {
+    display: none;
+}
+
+#fail {
+    display: none;
+    color: var(--accentdark-color);
+}
+
+#functions {
+    margin: 0.2em;
+    display: flex;
+    justify-content: center;
+    align-content: baseline;
+}
+
+#functions div {
+    margin: 0.5em;
+}
+
+/* Checkboxes / Radios */
+
+.container {
+    text-align: start;
+    display: block;
+    position: relative;
+    padding-left: 1.5em;
+    margin-bottom: 0.3em;
+    cursor: pointer;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    display: none;
+    cursor: pointer;
+}
+
+.check {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1em;
+    width: 1em;
+    background-color: var(--text-color);
+}
+
+.container:hover input~.check {
+    background-color: darkgray;
+}
+
+.container input:checked~.check {
+    background-color: var(--accent-color);
+}
+
+.check:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.check:after {
+    display: block;
+}
+
+.container .radio:after {
+    top: 34%;
+    left: 34%;
+    width: 35%;
+    height: 35%;
+    border-radius: 50%;
+    background: var(--text-color);
+}
+
+.container .box:after {
+    left: 35%;
+    top: 15%;
+    width: 20%;
+    height: 40%;
+    border: solid var(--text-color);
+    border-width: 0 0.2em 0.2em 0;
+    transform: rotate(45deg);
+}
+
+.radio {
+    border-radius: 50%;
+}
+
+/* Toggles */
+
+.switch {
+    margin-right: 7em;
+    padding-right: 0.5em;
+    position: relative;
+    display: inline-block;
+    width: 1.6em;
+    height: 1em;
+}
+
+.switch input {
+    display: none;
+}
+
+.switch label {
+    word-wrap: normal;
+    padding-left: 3em;
+}
+
+.slider {
+    display: flex;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0.2em;
+    background-color: darkgray;
+    transition: all 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 0.8em;
+    width: 0.8em;
+    left: 0.18em;
+    bottom: 0.1em;
+    border-radius: 0.2em;
+    background-color: var(--text-color);
+    transition: 0.4s;
+}
+
+input:checked+.slider {
+    background-color: var(--accent-color);
+}
+
+input:checked+.slider:before {
+    transform: translateX(1em);
+}
