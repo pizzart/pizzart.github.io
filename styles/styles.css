@@ -7,7 +7,7 @@
 
 :root {
     --bg-color: #110010;
-    --overlay-color: rgba(0, 0, 0, 0.4);
+    --darkbg-color: #0a000a;
     --text-color: #ffdfff;
     --accent-color: #e91e63;
     --accentdark-color: #8b0e38;
@@ -17,27 +17,29 @@
     font-family: "Major Mono Display", monospace;
     font-weight: 600;
     color: var(--text-color);
-    font-size: 4.5vmin;
+    font-size: clamp(3.5vh, 26px, 64px);
     background: var(--bg-color);
     text-align: center;
+    overflow-wrap: break-word;
 }
 
 ::selection {
     background-color: var(--accent2-color);
 }
 
-body {
-    margin: 0;
-}
-
+body,
 h1,
 h2,
 p {
-    margin: 0.2em;
+    margin: 0;
 }
 
 main {
-    margin-inline: 10vw;
+    background-color: var(--darkbg-color);
+    max-width: 1100px;
+    margin-inline: auto;
+    padding: 1em;
+    min-height: 80vh;
 }
 
 a:link {
@@ -100,7 +102,7 @@ button:focus,
 }
 
 .navbar {
-    background-color: var(--overlay-color);
+    background-color: var(--darkbg-color);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -115,6 +117,8 @@ button:focus,
 }
 
 .navbar p {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
     margin-left: 1em;
     margin-right: auto;
 }

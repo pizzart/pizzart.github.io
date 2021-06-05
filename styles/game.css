@@ -1,19 +1,22 @@
 main {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 #images {
+    height: 10em;
     position: relative;
 }
 
 #images * {
-    max-width: 25vw;
+    max-width: 10em;
     position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #options {
-    margin-top: 1.5em;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -21,5 +24,5 @@ main {
 
 #options select {
     margin-top: 0.1em;
-    width: 25vw;
+    width: 10em;
 }
