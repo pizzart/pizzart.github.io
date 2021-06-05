@@ -31,6 +31,7 @@ body {
 }
 
 h1,
+h2,
 p {
     margin: 0.2em;
 }
@@ -103,14 +104,19 @@ button:focus,
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: baseline;
-    padding-inline: 0.3em;
+    align-items: center;
+    padding-inline: 0.5em;
 }
 
 .navbar img {
     padding-top: 0.1em;
     padding-bottom: 0.1em;
-    height: 1.2em;
+    height: 1em;
+}
+
+.navbar p {
+    margin-left: 1em;
+    margin-right: auto;
 }
 
 #preview {
