@@ -17,7 +17,7 @@
     font-family: "Major Mono Display", monospace;
     font-weight: 600;
     color: var(--text-color);
-    font-size: clamp(1rem, 15.6rem + 1.9vw, 3.5rem);
+    font-size: max(4vh, 32px);
     background: var(--bg-color);
     text-align: center;
     overflow-wrap: break-word;
@@ -111,7 +111,7 @@ button:focus,
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-inline: 0.5em;
+    padding-inline: 0.5vmin;
 }
 
 .navbar img {
@@ -125,13 +125,4 @@ button:focus,
     margin-bottom: 0.3em;
     margin-left: 1em;
     margin-right: auto;
-}
-
-#preview {
-    font-family: "handel-gothic", monospace;
-    font-weight: normal;
-    letter-spacing: 0.034em;
-    word-wrap: normal;
-    display: inline;
-    padding: 0;
 }

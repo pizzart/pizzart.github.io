@@ -32,6 +32,7 @@
 #functions {
     margin: 0.2em;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-content: baseline;
 }
@@ -159,4 +160,13 @@ input:checked+.slider {
 
 input:checked+.slider:before {
     transform: translateX(1em);
+}
+
+#preview {
+    font-family: "handel-gothic", monospace;
+    font-weight: normal;
+    letter-spacing: 0.034em;
+    word-wrap: normal;
+    display: inline;
+    padding: 0;
 }
