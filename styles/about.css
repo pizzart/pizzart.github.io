@@ -1,0 +1,13 @@
+main ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main ul li {
+    margin-inline: 0.2em;
+}
+
+main ul li a img {
+    width: 1.5em;
+}

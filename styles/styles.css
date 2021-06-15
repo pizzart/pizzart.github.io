@@ -111,7 +111,7 @@ button:focus,
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-inline: 0.5vmin;
+    padding-inline: 0.9vmin;
 }
 
 .navbar img {
