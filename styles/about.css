@@ -6,10 +6,31 @@ main ul {
     flex-wrap: wrap;
 }
 
-main ul li {
-    margin-inline: 0.2em;
+.contact {
+    position: relative;
+    margin: 0.2em;
 }
 
-main ul li a img {
-    width: 1.5em;
+.contact img {
+    height: 1.3em;
+    filter: brightness(1);
+    transition: filter var(--animation-duration);
+}
+
+.contact img:hover {
+    filter: brightness(0.75);
+}
+
+.contact .show-hover {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.5em;
+    display: none;
+}
+
+.contact img:hover+.show-hover {
+    display: inherit;
 }

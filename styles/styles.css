@@ -7,7 +7,7 @@
     --partial-color: #ed457d;
     --accent2-color: #4c31eb;
     --animation-duration: 0.3s;
-    font-family: "Major Mono Display", "Lucida Console", "Courier New";
+    font-family: "Major Mono Display", "Courier New", "Lucida Console";
     font-weight: bold;
     color: var(--text-color);
     font-size: max(4vh, 32px);
@@ -36,7 +36,7 @@ main {
     max-width: 1100px;
     margin-inline: auto;
     padding: 1em;
-    min-height: 10em;
+    padding-bottom: 1.5em;
 }
 
 a:link {
