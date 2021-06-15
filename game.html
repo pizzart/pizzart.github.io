@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/styles.css" />
     <link rel="stylesheet" href="/styles/game.css" />
+    <link rel="stylesheet" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap">
     <link rel="icon" href="/images/pizza.svg" type="image/x-icon" />
     <title>Make Your Own Pizza - PizzArt</title>
 </head>
@@ -13,7 +14,7 @@
 <body>
     <header class="navbar">
         <a href="index.html"><img src="/images/pizza.svg" alt="" /></a>
-        <p>Make your own pizza!</p>
+        <p>Make your own pizza</p>
         <div>
             <a href="editor.html"><img src="/images/pages/editor.svg" alt="" /></a>
             <a href="about.html"><img src="/images/pages/about.svg" alt="" /></a>
@@ -30,7 +31,7 @@
         <div id="options">
             <div id="base">
                 <label for="base">Base</label>
-                <select name="base" id="base-select">
+                <select name="base" id="base-select" autocomplete="off">
                     <option value="chilling">Chilling</option>
                     <option value="spooky">Spooky</option>
                     <option value="celebrating">Celebrating</option>
@@ -41,7 +42,7 @@
             </div>
             <div id="topping">
                 <label for="topping">Topping</label>
-                <select name="topping" id="topping-select">
+                <select name="topping" id="topping-select" autocomplete="off">
                     <option value="pepperoni">Pepperoni</option>
                     <option value="graycheeze">Gray Cheeze</option>
                     <option value="cheeze">Cheeze</option>
@@ -52,7 +53,7 @@
             </div>
             <div id="face">
                 <label for="face">Face</label>
-                <select name="face" id="face-select">
+                <select name="face" id="face-select" autocomplete="off">
                     <option value="vibing">Vibing</option>
                     <option value="sanspire">Vampire Sans</option>
                     <option value="drunken">Drunk</option>
@@ -61,7 +62,7 @@
             </div>
             <div id="hat">
                 <label for="hat">Hat</label>
-                <select name="hat" id="hat-select">
+                <select name="hat" id="hat-select" autocomplete="off">
                     <option value="ears">Ears</option>
                     <option value="festive">Festive</option>
                     <option value="startext">Drunk</option>
@@ -70,7 +71,7 @@
             </div>
             <div id="bg">
                 <label for="bg">Additional</label>
-                <select name="bg" id="bg-select">
+                <select name="bg" id="bg-select" autocomplete="off">
                     <option value="brain">Brain</option>
                     <option value="branches">Branches</option>
                     <option value="hat">Christmas hat</option>
