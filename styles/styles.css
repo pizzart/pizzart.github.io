@@ -2,6 +2,7 @@
     --bg-color: #110010;
     --darkbg-color: #0a000a;
     --text-color: #ffdfff;
+    --textwhite-color: #ffffff;
     --accent-color: #e91e63;
     --accentdark-color: #8b0e38;
     --partial-color: #ed457d;
@@ -77,25 +78,27 @@ img {
 select,
 button,
 .file-button {
-    background-color: var(--accent-color);
     font: inherit;
     color: var(--text-color);
-    border: none 0.08em;
+    background: none;
+    border: var(--accent-color) solid 0.1em;
     padding: 0.2em;
-    padding-inline: 0.5em;
+    padding-inline: 0.8em;
     border-radius: 0.15em;
-    transition: background-color var(--animation-duration);
+    transition: all var(--animation-duration);
 }
 
 button:hover,
 .file-button:hover {
     cursor: pointer;
-    background-color: var(--partial-color);
+    color: var(--textwhite-color);
+    border-color: var(--partial-color);
 }
 
 button:focus,
 .file-button:active {
-    background-color: var(--accentdark-color);
+    color: var(--textwhite-color);
+    border-color: var(--accentdark-color);
 }
 
 .navbar {
