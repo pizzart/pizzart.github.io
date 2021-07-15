@@ -1,0 +1,17 @@
+main {
+    text-align: left;
+    font-size: 0.75em;
+}
+
+date {
+    color: var(--textdark-color);
+    font-size: 0.75em;
+}
+
+h1 {
+    color: var(--textwhite-color);
+}
+
+main img {
+    width: var(--main-width);
+}

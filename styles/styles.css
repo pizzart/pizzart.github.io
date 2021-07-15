@@ -3,11 +3,13 @@
     --darkbg-color: #0a000a;
     --text-color: #ffdfff;
     --textwhite-color: #ffffff;
+    --textdark-color: #45323c;
     --accent-color: #e91e63;
     --accentdark-color: #8b0e38;
     --partial-color: #ed457d;
     --accent2-color: #4c31eb;
     --animation-duration: 0.3s;
+    --main-width: 1100px;
     font-family: "Major Mono Display", "Courier New", "Lucida Console";
     font-weight: bold;
     color: var(--text-color);
@@ -34,7 +36,7 @@ h1 {
 
 main {
     background-color: var(--darkbg-color);
-    max-width: 1100px;
+    max-width: var(--main-width);
     margin-inline: auto;
     padding: 1em;
     padding-bottom: 1.5em;
