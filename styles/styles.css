@@ -60,12 +60,12 @@ a:active {
     color: var(--accentdark-color);
 }
 
-a img {
+:is(a img, .current) {
     filter: brightness(1);
     transition: filter var(--animation-duration);
 }
 
-a img:hover {
+:is(a img, .current):hover {
     filter: brightness(0.75);
 }
 
@@ -90,8 +90,7 @@ button,
     transition: all var(--animation-duration);
 }
 
-button:hover,
-.file-button:hover {
+:is(button, .file-button):hover {
     cursor: pointer;
     color: var(--textwhite-color);
     border-color: var(--partial-color);

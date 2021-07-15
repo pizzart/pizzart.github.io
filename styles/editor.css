@@ -162,6 +162,7 @@ input:checked+.slider:before {
     transform: translateX(1em);
 }
 
+/* OLD WALL-E PREVIEW
 #preview {
     font-family: "handel-gothic", monospace;
     font-weight: normal;
@@ -170,3 +171,4 @@ input:checked+.slider:before {
     display: inline;
     padding: 0;
 }
+*/

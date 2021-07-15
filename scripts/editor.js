@@ -9,8 +9,8 @@ const modifiers = new Map([
 ]);
 let currentModifiers = new Array();
 let disabledModifiers = new Array();
-let randomLineNum = new Number();
 const titleDesc = document.getElementById("title-desc");
+const previewTag = document.getElementById("preview")
 
 function readFile(file) {
     let reader = new FileReader();
@@ -21,7 +21,7 @@ function readFile(file) {
             [...functions.children].forEach((child) => {
                 child.hidden = false;
             });
-            titleDesc.innerHTML = "MALaF";
+            titleDesc.hidden = true;
             downloadButton.hidden = false;
             dropArea.style.display = "none";
             failText.style.display = "none";
@@ -29,6 +29,7 @@ function readFile(file) {
             contents = lines;
             currentModifiers = [colorLines];
             randomLineNum = randomInt(0, contents.length - 1);
+
             updatePreview();
         } else if (verifyFile(lines, "PP")) {
             contents = randomizeParam(lines);
@@ -90,33 +91,8 @@ function createLines(ext, numbers, lines) {
 }
 
 function updatePreview() {
-    let text = contents;
-    for (const modifier of currentModifiers) {
-        text = modifier(text);
-    }
-    text = getSubStr(text[randomLineNum], '"');
-    let newText = new String();
-    let preview = new String();
-    if (/\^\d{3}/.test(text)) {
-        newText = text.match(/(\^\d{3})(.[^\^]*)(\^\d{3})(\s*)/g);
-        if (newText != null) {
-            [...newText].forEach((str) => {
-                preview += `<p style="color: #${str.match(
-                    /\d{3}/
-                )}">${str.replace(/\^\d{3}/g, "")}</p>`;
-            });
-            preview = preview.replace(/\^/g, "");
-            preview = preview.replace(
-                /<p style="color: #\d{3}">\s*(\d|\^)\s*<\/p>/g,
-                ""
-            );
-        }
-    } else {
-        preview = text;
-    }
-    preview = preview.replace(/~/g, "<br>");
-    preview = "Random line preview with WALL-E in-game font:<br>" + preview;
-    //document.getElementById("preview").innerHTML = preview;
+    let preview = "PREVIEW OF SELECTED MODIFIERS:<br> some text";
+    previewTag.innerHTML = preview;
 }
 
 function shuffleLines(fileLines) {

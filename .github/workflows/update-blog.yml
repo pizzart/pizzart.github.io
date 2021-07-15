@@ -21,7 +21,7 @@ jobs:
 
       - name: run the script
         run: |
-          python blog/update-blog.py $(date +%y/%m/%d)
+          python blog/update-blog.py $(date +%d/%m/%y)
 
       - name: commit
         id: commit

@@ -51,7 +51,7 @@ dropArea.addEventListener("drop", handleDrop, false);
                 }
             });
         }
-        //updatePreview();
+        updatePreview();
     });
 });
 
