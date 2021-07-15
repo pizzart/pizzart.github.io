@@ -25,6 +25,7 @@ jobs:
 
       - name: commit
         id: commit
+        if: git status --porcelain
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
