@@ -1,12 +1,12 @@
 let contents = new Array();
 let filename = new String();
-const modifiers = new Map([
-    ["shufflelines", shuffleLines],
-    ["shufflewords", shuffleWords],
-    ["colorlines", colorLines],
-    ["colorwords", colorWords],
-    ["colorletters", colorLetters],
-]);
+const modifiers = {
+    "shufflelines": shuffleLines,
+    "shufflewords": shuffleWords,
+    "colorlines": colorLines,
+    "colorwords": colorWords,
+    "colorletters": colorLetters,
+};
 let currentModifiers = new Array();
 let disabledModifiers = new Array();
 const titleDesc = document.getElementById("title-desc");
@@ -91,7 +91,49 @@ function createLines(ext, numbers, lines) {
 }
 
 function updatePreview() {
-    let preview = "PREVIEW OF SELECTED MODIFIERS:<br> some text";
+    let previewLine1 = "Need a light in dark places? LT can help you!"
+    let previewLine2 = "This BnL Security Door is locked. Find and call D-FIB to open it!"
+    let previewText = [previewLine1, previewLine2]
+
+    function shuffleLinesP() {
+        previewText = [previewLine2, previewLine1]
+    }
+    function shuffleWordsP() {
+        shuffleWords([previewLine1, previewLine2])
+    }
+
+    const colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'brown']
+    function colorLinesP() {
+        previewLine1 = `<span style="color: cyan">${previewLine1}</span>`
+        previewLine2 = `<span style="color: red">${previewLine2}</span>`
+    }
+    function colorLettersP() {
+        for (let line of previewText) {
+            let newLine = ""
+            for (const chr of line) {
+                newLine += `<span style="color: ${colors[randomInt(0, colors.length - 1)]}">${chr}</span>`
+            }
+            line = newLine
+        }
+    }
+    function colorWordsP() {
+        let newText = []
+        let newLine = line.trim().split(" ")
+        let colorLine = new String()
+        for (const word of newLine) {
+            let color = colors[randomInt(0, colors.length - 1)]
+            colorLine += `<span style="color: ${color}">${word} </span>`
+        }
+    }
+
+    for (const modifier of currentModifiers) {
+        previewText = modifier(previewText)
+    }
+
+    let preview = "PREVIEW OF SELECTED MODIFIERS:<br>";
+    for (const line of previewText) {
+        previewText += line + "<br>"
+    }
     previewTag.innerHTML = preview;
 }
 
@@ -131,7 +173,7 @@ function colorLines(fileLines) {
         numbers.push(line.trim().split(" ")[1]);
         let newLine = getSubStr(line, '"');
         newLine = newLine.replace(newLine.match(/\^\d{3}/), "");
-        lines.push(`^${color + newLine}^000`);
+        lines.push(`^${color + newLine}`);
     }
 
     return createLines("TT", numbers, lines);
@@ -152,7 +194,7 @@ function colorWords(fileLines) {
             if (word.slice(3) != "STR") {
                 let color = String(randomInt(0, 999));
                 color = "0".repeat(3 - color.length) + color;
-                colorLine += `^${color + word}^000 `;
+                colorLine += `^${color + word} `;
             }
         }
         lines.push(colorLine);
@@ -169,49 +211,49 @@ function colorLetters(fileLines) {
         numbers.push(line.trim().split(" ")[1]);
         let newLine = getSubStr(line, '"');
         newLine = newLine.replace(newLine.match(/\^\d{3}/), "");
-        let colorLine = new String();
-        let isKey = false;
-        for (const c in newLine) {
+        let outputLine = new String();
+        let isInputLine = false;
+        for (const chr in newLine) {
             if (
-                newLine[c] == "S" &&
-                newLine[Number(c) + 1] == "T" &&
-                newLine[Number(c) + 2] == "R" &&
-                newLine[Number(c) + 3] == "_"
+                newLine[chr] == "S" &&
+                newLine[Number(chr) + 1] == "T" &&
+                newLine[Number(chr) + 2] == "R" &&
+                newLine[Number(chr) + 3] == "_"
             ) {
-                isKey = true;
+                isInputLine = true;
             }
-            if (isKey) {
-                if (newLine[c] == " ") {
-                    isKey = false;
+            if (isInputLine) {
+                if (newLine[chr] == " ") {
+                    isInputLine = false;
                 } else {
-                    colorLine += newLine[c];
+                    outputLine += newLine[chr];
                     continue;
                 }
             }
-            if (newLine[c] != " ") {
+            if (newLine[chr] != " ") {
                 let color = String(randomInt(0, 999));
                 color = "0".repeat(3 - color.length) + color;
                 if (
-                    `${colorLine}${newLine.replace(
-                        colorLine.replace(/\^\d{3}/g, ""),
+                    `${outputLine}${newLine.replace(
+                        outputLine.replace(/\^\d{3}/g, ""),
                         ""
                     )}`.length +
                     16 <=
                     1000
                 ) {
-                    colorLine = `${colorLine}^${color + newLine[c]}^000`;
+                    outputLine = `${outputLine}^${color + newLine[c]}`;
                 } else {
-                    colorLine = `${colorLine}^${
+                    outputLine = `${outputLine}^${
                         color +
-                        newLine.replace(colorLine.replace(/\^\d{3}/g, ""), "")
-                    }^000`;
+                        newLine.replace(outputLine.replace(/\^\d{3}/g, ""), "")
+                    }`;
                     break;
                 }
             } else {
-                colorLine += newLine[c];
+                outputLine += newLine[chr];
             }
         }
-        lines.push(colorLine);
+        lines.push(outputLine);
     }
 
     return createLines("TT", numbers, lines);
