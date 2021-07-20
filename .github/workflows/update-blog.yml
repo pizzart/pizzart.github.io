@@ -19,9 +19,9 @@ jobs:
           pip install markdown
           pip install beautifulsoup4
 
-      - name: run the script
+      - name: set timezone and run the script
         run: |
-          python blog/update-blog.py $(date +%d/%m/%y)
+          python blog/update-blog.py $(TZ=Europe/Moscow date +%d/%m/%y)
 
       - name: check for changes
         id: changes
