@@ -10,6 +10,8 @@ def main():
     blog.close()
 
     old_date = soup.find("date")
+    print("current date: " + date)
+    print("latest post date: " + old_date.string)
     if old_date:
         if old_date.string == date:
             print("not running, the post for today already exists")
