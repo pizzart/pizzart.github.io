@@ -13,36 +13,24 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+
       - name: install markdown and beautifulsoup
         run: |
           python -m pip install --upgrade pip
           pip install markdown
           pip install beautifulsoup4
 
-      - name: set timezone and run the script
+      - name: run script
         run: |
           python blog/update-blog.py $(TZ=Europe/Moscow date +%d/%m/%y)
 
-      - name: check for changes
-        id: changes
-        uses: UnicornGlobal/has-changes-action@v1.0.11
-
-      - name: commit
-        id: commit
-        if: steps.changes.outputs.changed == 1
+      - uses: actions/checkout@v2
+      - name: add commit push
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "github-actions"
-          git add --all
-          if [-z "$(git status --porcelain)"]; then
-             echo "::set-output name=push::false"
-          else
-             git commit -m "Add changes" -a
-             echo "::set-output name=push::true"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          if [ -n "$(git status --porcelain)" ]; then
+             git commit -m "update blog" -a
+             git push
           fi
-        shell: bash
-      - name: push
-        if: steps.commit.outputs.push == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-           github_token: ${{ secrets.GITHUB_TOKEN }}
