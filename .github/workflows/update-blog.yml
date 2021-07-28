@@ -22,7 +22,9 @@ jobs:
 
       - name: run script
         run: |
+          cat blog.html
           python blog/update-blog.py $(TZ=Europe/Moscow date +%d/%m/%y)
+          cat blog.html
 
       - uses: actions/checkout@v2
       - name: add commit push
