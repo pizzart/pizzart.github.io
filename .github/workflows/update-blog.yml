@@ -4,9 +4,7 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: set up python 3.x
@@ -22,17 +20,14 @@ jobs:
 
       - name: run script
         run: |
-          cat blog.html
           python blog/update-blog.py $(TZ=Europe/Moscow date +%d/%m/%y)
-          cat blog.html
 
-      - uses: actions/checkout@v2
-      - name: add commit push
+      - name: commit
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add .
           if [ -n "$(git status --porcelain)" ]; then
-             git commit -m "update blog" -a
-             git push
+            echo "changes exist, committing and pushing"
+            git commit -am "update blog"
+            git push
           fi
