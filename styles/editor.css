@@ -4,15 +4,14 @@
     justify-content: center;
     margin: auto;
     margin-top: 0.4em;
-    border: 0.1em dashed var(--text-color);
-    border-radius: 0.1em;
+    border: 0.1em dashed var(--accent-color);
     width: 80%;
     padding: 0.1em;
     transition: all 0.2s;
 }
 
 #drop-area.highlight {
-    border-color: var(--accent-color);
+    border-color: var(--partial-color);
 }
 
 #drop-area * {
@@ -31,24 +30,28 @@
 
 #functions {
     margin: 0.2em;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     justify-content: center;
-    align-content: baseline;
+    align-items: top;
 }
 
 #functions div {
-    margin: 0.5em;
+    margin-top: 0.2em;
+    margin-left: 0.5em;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Checkboxes / Radios */
 
 .container {
     text-align: start;
-    display: block;
+    display: flex;
+    align-items: center;
     position: relative;
     padding-left: 1.5em;
-    margin-bottom: 0.3em;
+    margin-bottom: 0.1em;
     cursor: pointer;
     user-select: none;
 }
@@ -65,15 +68,15 @@
     left: 0;
     height: 1em;
     width: 1em;
-    background-color: var(--text-color);
+    border: solid 0.1em var(--text-color);
 }
 
 .container:hover input~.check {
-    background-color: darkgray;
+    border: solid 0.1em var(--textwhite-color);
 }
 
 .container input:checked~.check {
-    background-color: var(--accent-color);
+    border: solid 0.1em var(--accent-color);
 }
 
 .check:after {
@@ -87,22 +90,20 @@
 }
 
 .container .radio:after {
-    top: 34%;
-    left: 34%;
+    top: 25%;
+    left: 25%;
     width: 35%;
     height: 35%;
     border-radius: 50%;
-    background: var(--text-color);
+    border: solid 0.1em var(--accent-color);
 }
 
 .container .box:after {
-    left: 35%;
-    top: 15%;
-    width: 20%;
-    height: 40%;
-    border: solid var(--text-color);
-    border-width: 0 0.2em 0.2em 0;
-    transform: rotate(45deg);
+    top: 25%;
+    left: 25%;
+    width: 34%;
+    height: 35%;
+    border: solid 0.1em var(--accent-color);
 }
 
 .radio {
@@ -115,9 +116,10 @@
     margin-right: 7em;
     padding-right: 0.5em;
     position: relative;
-    display: inline-block;
+    display: flex;
     width: 1.6em;
     height: 1em;
+    align-items: center;
 }
 
 .switch input {
@@ -126,7 +128,7 @@
 
 .switch label {
     word-wrap: normal;
-    padding-left: 3em;
+    padding-left: 2.5em;
 }
 
 .slider {
@@ -137,29 +139,28 @@
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 0.2em;
-    background-color: darkgray;
-    transition: all 0.4s;
+    border: solid 0.1em var(--text-color);
+    transition: all 0.3s;
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 0.8em;
-    width: 0.8em;
-    left: 0.18em;
-    bottom: 0.1em;
-    border-radius: 0.2em;
-    background-color: var(--text-color);
-    transition: 0.4s;
+    height: 0.5em;
+    width: 0.5em;
+    left: 0.1em;
+    bottom: 0.08em;
+    border: solid 0.1em var(--text-color);
+    transition: var(--animation-duration);
 }
 
-input:checked+.slider {
-    background-color: var(--accent-color);
+input:checked + .slider {
+    border-color: var(--accent-color);
 }
 
 input:checked+.slider:before {
-    transform: translateX(1em);
+    transform: translateX(1.11em);
+    border-color: var(--accent-color);
 }
 
 /* OLD WALL-E PREVIEW

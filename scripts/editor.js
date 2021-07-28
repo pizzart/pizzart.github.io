@@ -18,9 +18,7 @@ function readFile(file) {
         let lines = reader.result.split("\n");
 
         if (verifyFile(lines, "TT")) {
-            [...functions.children].forEach((child) => {
-                child.hidden = false;
-            });
+            functions.style.display = "flex";
             titleDesc.hidden = true;
             downloadButton.hidden = false;
             dropArea.style.display = "none";

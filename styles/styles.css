@@ -86,19 +86,18 @@ button,
     border: var(--accent-color) solid 0.1em;
     padding: 0.2em;
     padding-inline: 0.8em;
-    border-radius: 0.15em;
     transition: all var(--animation-duration);
 }
 
 :is(button, .file-button):hover {
     cursor: pointer;
-    color: var(--textwhite-color);
+    color: var(--accent-color);
     border-color: var(--partial-color);
 }
 
 button:focus,
 .file-button:active {
-    color: var(--textwhite-color);
+    color: var(--accentdark-color);
     border-color: var(--accentdark-color);
 }
 
