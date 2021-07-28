@@ -9,7 +9,7 @@ def main():
     soup = BeautifulSoup(blog, "html.parser")
     blog.close()
 
-    old_date = soup.find("date")
+    old_date = soup.find("span", {"class": "date"})
     print("current date: " + date)
     print("latest post date: " + old_date.string)
     if old_date:
@@ -26,19 +26,25 @@ def main():
 
     post = soup.new_tag("article")
 
-    date_tag = soup.new_tag("date")
+    date_tag = soup.new_tag("span")
+    date_tag["class"] = "date"
     date_tag.string = date
 
-    img_dir = post_dir + "image.jpg"
-    img_link = soup.new_tag("a", target="_blank", href=img_dir)
-    img = soup.new_tag("img", src=img_dir, alt="drawing", loading="lazy")
-    img_link.append(img)
+    details = soup.new_tag("details")
+    summary = soup.new_tag("summary")
+    details.append(summary)
+
+    for img in md.find_all("img"):
+        img["loading"] = "lazy"
+        img_a = soup.new_tag("a", target="_blank", href=img["src"])
+        img_a.append(img)
+        details.append(img_a)
 
     post.append(date_tag)
     post.append(md)
-    post.append(img_link)
+    post.append(details)
 
-    main = soup.find("main")
+    main = soup.main
     main.insert(1, post)
 
     blog = open("blog.html", "w")

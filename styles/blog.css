@@ -11,7 +11,7 @@ article {
     padding: 1em;
 }
 
-date {
+.date {
     color: var(--textdark-color);
     font-size: 0.75em;
 }
@@ -20,7 +20,31 @@ h1 {
     color: var(--textwhite-color);
 }
 
+p, details {
+    margin-left: 0.3em;
+}
+
+details > summary::before {
+    content: "show drawing";
+}
+
+details[open] > summary::before {
+    content: "hide drawing";
+}
+
+details[open] > summary {
+    color: var(--accentdark-color);
+}
+
+summary {
+    color: var(--accent-color);
+    font-size: 0.75em;
+    cursor: pointer;
+    transition: all var(--animation-duration);
+}
+
 main img {
-    max-width: 100%;
-    max-height: 50vh;
+    max-width: 65%;
+    margin-top: 0.2em;
+    margin-left: 1em;
 }
