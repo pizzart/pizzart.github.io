@@ -19,7 +19,11 @@ def main():
 
     date_path = "/".join([date.split("/")[i] for i in [2, 1, 0]])
     post_dir = "blog/posts/%s/" % date_path
-    post_file = open(post_dir + "post.md", "r")
+    try:
+        post_file = open(post_dir + "post.md", "r")
+    except FileNotFoundError:
+        print("ah shit no file oops gotta quit :pensive:")
+        return
     post_text = post_file.read()
     post_file.close()
     md = BeautifulSoup(markdown(post_text), "html.parser")
