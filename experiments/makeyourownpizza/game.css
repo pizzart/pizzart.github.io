@@ -6,23 +6,34 @@ main {
 
 #images {
     height: 10em;
-    position: relative;
 }
 
 #images * {
     max-width: 10em;
     position: absolute;
-    top: 0;
-    left: 0;
+    left: 35vw;
 }
 
-#options {
+.options {
     display: flex;
     flex-direction: column;
+}
+
+.options select {
+    margin-top: 0.1em;
+    width: 10em;
+}
+
+#img-options {
     align-items: flex-end;
 }
 
-#options select {
-    margin-top: 0.1em;
-    width: 10em;
+#name-options {
+    align-items: flex-start;
+}
+
+#all-opt {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
