@@ -24,12 +24,13 @@ main {
     width: 10em;
 }
 
-#img-options {
-    align-items: flex-end;
-}
-
 #name-options {
     align-items: flex-start;
+}
+
+#img-options {
+    margin-left: auto;
+    align-items: flex-end;
 }
 
 #all-opt {
