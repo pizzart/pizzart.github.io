@@ -31,12 +31,12 @@
     height: 1.1em;
 }
 
-#contacts img {
+#contacts * {
     filter: brightness(1);
     transition: filter var(--animation-duration);
 }
 
-#contacts img:hover {
+#contacts *:hover {
     filter: brightness(0.75);
 }
 
