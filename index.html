@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="pibbapibbapibba" />
     <link rel="stylesheet" href="/styles/styles.css" />
-    <link rel="stylesheet" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="icon" href="/images/pizza.svg" type="image/x-icon" />
     <title>Home - PizzArt</title>
 </head>
@@ -25,7 +27,13 @@
     <main>
         <h1>PizzArt</h1>
         <p>A.K.A: <a href="/experiments/makeyourownpizza/game.html">any of the combinations here</a></p>
+        <label for="input-font">Font:</label>
+        <select id="input-font" class="input" onchange="changeFont(this.value);">
+          <option value="Major Mono Display">Cool</option>
+          <option value="Montserrat">Readable</option>
+        </select>
     </main>
+    <script src="/scripts/fonts.js" async defer></script>
 </body>
 
 </html>

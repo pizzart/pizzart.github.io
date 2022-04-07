@@ -39,17 +39,3 @@
 #contacts *:hover {
     filter: brightness(0.75);
 }
-
-#contacts .show-hover {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 0.5em;
-    display: none;
-}
-
-#contacts img:hover+.show-hover {
-    display: inline;
-}

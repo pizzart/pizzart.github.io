@@ -10,8 +10,10 @@
     --accent2-color: #4c31eb;
     --animation-duration: 0.3s;
     --main-width: 1400px;
-    font-family: "Major Mono Display", "Courier New", "Lucida Console";
-    font-weight: bold;
+    --font: "Major Mono Display";
+    --font-thickness: bold;
+    font-family: var(--font), "Courier New", "Lucida Console";
+    font-weight: var(--font-thickness);
     color: var(--text-color);
     font-size: max(4vh, 32px);
     background: var(--bg-color);
@@ -84,8 +86,9 @@ button,
     color: var(--text-color);
     background: none;
     border: var(--accent-color) solid 0.1em;
-    padding: 0.2em;
+    padding: 0.1em;
     padding-inline: 0.8em;
+    margin-block: 0.2em;
     transition: all var(--animation-duration);
 }
 
