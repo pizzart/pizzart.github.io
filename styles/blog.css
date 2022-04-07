@@ -25,11 +25,11 @@ p, details {
 }
 
 details > summary::before {
-    content: "show drawing";
+    content: "show image(s)";
 }
 
 details[open] > summary::before {
-    content: "hide drawing";
+    content: "hide image(s)";
 }
 
 details[open] > summary {
