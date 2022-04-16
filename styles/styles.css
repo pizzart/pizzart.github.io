@@ -40,8 +40,10 @@ main {
     background-color: var(--darkbg-color);
     max-width: var(--main-width);
     margin-inline: auto;
-    padding: 1em;
+    padding-inline: 10vw;
+    padding-top: 4vh;
     padding-bottom: 1.5em;
+    overflow: clip;
 }
 
 a:link {
@@ -86,8 +88,8 @@ button,
     color: var(--text-color);
     background: none;
     border: var(--accent-color) solid 0.1em;
-    padding: 0.1em;
-    padding-inline: 0.8em;
+    max-width: min(40vw, 20ch);
+    padding: 0.2em;
     margin-block: 0.2em;
     transition: all var(--animation-duration);
 }
@@ -108,7 +110,8 @@ button:focus,
     background-color: var(--darkbg-color);
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-around;
     align-items: center;
     padding-inline: 0.9vmin;
 }

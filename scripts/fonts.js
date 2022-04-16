@@ -8,6 +8,7 @@ function changeFont(font){
     else {
         document.documentElement.style.setProperty("--font-thickness", "bold");
     }
+    document.getElementById("input-font").value = font;
 
     localStorage["font"] = font;
 }
