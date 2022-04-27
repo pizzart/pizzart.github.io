@@ -1,12 +1,12 @@
 :root {
-    --bg-color: #110010;
-    --darkbg-color: #0a000a;
-    --text-color: #ffdfff;
-    --textwhite-color: #ffffff;
+    --bg-color: #16010e;
+    --darkbg-color: #0f0009;
+    --text-color: #ffdfef;
+    --textwhite-color: #ffefef;
     --textdark-color: #45323c;
     --accent-color: #e91e63;
     --accentdark-color: #8b0e38;
-    --partial-color: #ed457d;
+    --partial-color: #ff459f;
     --accent2-color: #4c31eb;
     --animation-duration: 0.3s;
     --main-width: 1400px;
@@ -58,6 +58,7 @@ a:visited {
 
 a:hover {
     color: var(--partial-color);
+    text-decoration: underline;
 }
 
 a:active {
@@ -91,18 +92,16 @@ button,
     max-width: min(40vw, 20ch);
     padding: 0.2em;
     margin-block: 0.2em;
+    cursor: pointer;
     transition: all var(--animation-duration);
 }
 
 :is(button, .file-button):hover {
-    cursor: pointer;
-    color: var(--accent-color);
     border-color: var(--partial-color);
 }
 
 button:focus,
 .file-button:active {
-    color: var(--accentdark-color);
     border-color: var(--accentdark-color);
 }
 

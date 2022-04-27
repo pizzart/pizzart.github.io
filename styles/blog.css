@@ -25,11 +25,11 @@ p, details {
 }
 
 details > summary::before {
-    content: "show image(s)";
+    content: "show attachments";
 }
 
 details[open] > summary::before {
-    content: "hide image(s)";
+    content: "hide attachments";
 }
 
 details[open] > summary {
@@ -41,6 +41,10 @@ summary {
     font-size: 0.75em;
     cursor: pointer;
     transition: all var(--animation-duration);
+}
+
+summary:hover {
+    color: var(--partial-color);
 }
 
 main img {
