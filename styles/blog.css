@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
 
 main {
-    text-align: left;
+    text-align: justify;
     font-size: 0.75em;
     display: flex;
     flex-direction: column;
@@ -16,12 +16,20 @@ article {
     font-size: 0.75em;
 }
 
-h1 {
+article h1 {
     color: var(--textwhite-color);
+    margin-bottom: 0.5em;
 }
 
-p, details {
-    margin-left: 0.3em;
+article p {
+    margin-left: 0.3rem;
+    padding-left: 0.3rem;
+    border-left: 0.1rem solid var(--accent-color);
+}
+
+article p,
+details {
+    padding-bottom: 0.5rem;
 }
 
 details > summary::before {
@@ -33,7 +41,7 @@ details[open] > summary::before {
 }
 
 details[open] > summary {
-    color: var(--accentdark-color);
+    color: var(--accenta-alt-color);
 }
 
 summary {

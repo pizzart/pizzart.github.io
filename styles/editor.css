@@ -25,7 +25,7 @@
 
 #fail {
     display: none;
-    color: var(--accentdark-color);
+    color: var(--accent-alt-color);
 }
 
 #functions {
@@ -71,11 +71,11 @@
     border: solid 0.1em var(--text-color);
 }
 
-.container:hover input~.check {
+.container:hover input ~ .check {
     border: solid 0.1em var(--textwhite-color);
 }
 
-.container input:checked~.check {
+.container input:checked ~ .check {
     border: solid 0.1em var(--accent-color);
 }
 
@@ -85,7 +85,7 @@
     display: none;
 }
 
-.container input:checked~.check:after {
+.container input:checked ~ .check:after {
     display: block;
 }
 
@@ -158,7 +158,7 @@ input:checked + .slider {
     border-color: var(--accent-color);
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
     transform: translateX(1.11em);
     border-color: var(--accent-color);
 }

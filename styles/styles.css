@@ -1,23 +1,34 @@
 :root {
-    --bg-color: #16010e;
-    --darkbg-color: #0f0009;
-    --text-color: #ffdfef;
-    --textwhite-color: #ffefef;
-    --textdark-color: #45323c;
-    --accent-color: #e91e63;
-    --accentdark-color: #8b0e38;
-    --partial-color: #ff459f;
-    --accent2-color: #4c31eb;
+    --bg-light: hsl(0, 33%, 92%);
+    --darkbg-light: hsl(0, 20%, 84%);
+    --text-light: black;
+    --textwhite-light: black;
+
+    --bg-dark: hsl(0, 8%, 14%);
+    --darkbg-dark: hsl(0, 8%, 10%);
+    --text-dark: hsl(17, 100%, 94%);
+    --textwhite-dark: hsl(0, 100%, 97%);
+
+    --bg-color: var(--bg-dark);
+    --darkbg-color: var(--darkbg-dark);
+    --text-color: var(--text-dark);
+    --textwhite-color: var(--textwhite-dark);
+    --textdark-color: hsl(328, 16%, 23%);
+    --accent-color: hsl(351, 82%, 52%);
+    --accent-alt-color: hsl(351, 98%, 61%);
+    --accent2-color: hsl(249, 82%, 56%);
     --animation-duration: 0.3s;
-    --main-width: 1400px;
-    --font: "Major Mono Display";
+    --main-width: 1000px;
+    --font: "Major Mono Display", Lucida;
     --font-thickness: bold;
+
     font-family: var(--font), "Courier New", "Lucida Console";
     font-weight: var(--font-thickness);
+    font-kerning: 4em;
     color: var(--text-color);
-    font-size: max(4vh, 32px);
+    font-size: calc(max(4vh, 32px) * 0.8);
     background: var(--bg-color);
-    text-align: center;
+    text-align: justify;
     overflow-wrap: break-word;
 }
 
@@ -40,7 +51,7 @@ main {
     background-color: var(--darkbg-color);
     max-width: var(--main-width);
     margin-inline: auto;
-    padding-inline: 10vw;
+    padding-inline: 4%;
     padding-top: 4vh;
     padding-bottom: 1.5em;
     overflow: clip;
@@ -62,7 +73,7 @@ a:hover {
 }
 
 a:active {
-    color: var(--accentdark-color);
+    color: var(--accent-alt-color);
 }
 
 :is(a img, .current) {
@@ -75,7 +86,7 @@ a:active {
 }
 
 ul {
-    list-style: none;
+    list-style: inside;
 }
 
 img {
@@ -87,10 +98,10 @@ button,
 .file-button {
     font: inherit;
     color: var(--text-color);
-    background: none;
+    background: var(--darkbg-color);
     border: var(--accent-color) solid 0.1em;
-    max-width: min(40vw, 20ch);
-    padding: 0.2em;
+    max-width: 100%;
+    padding: 0.1em;
     margin-block: 0.2em;
     cursor: pointer;
     transition: all var(--animation-duration);
@@ -102,28 +113,25 @@ button,
 
 button:focus,
 .file-button:active {
-    border-color: var(--accentdark-color);
+    border-color: var(--accent-alt-color);
 }
 
 .navbar {
     background-color: var(--darkbg-color);
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding-inline: 0.9vmin;
+    padding-inline: 4%;
+    /* padding-inline: 0.9vmin; */
+    flex-wrap: wrap;
+    max-width: var(--main-width);
+    margin: auto;
+    padding-block: 0.3rem;
+    border-block: 0.1em solid var(--accent-color);
+    font-size: 1.25rem;
 }
 
 .navbar img {
-    padding-top: 0.1em;
-    padding-bottom: 0.1em;
     height: 1em;
-}
-
-.navbar p {
-    margin-top: 0.3em;
-    margin-bottom: 0.3em;
-    margin-left: 1em;
-    margin-right: auto;
 }

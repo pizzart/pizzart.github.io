@@ -16,19 +16,23 @@
 }
 
 #itch {
-    height: 1.1em;
+    height: 1.4em;
 }
 
 #yt {
-    height: 1.0em;
+    height: 1.7em;
 }
 
 #twitch {
-    height: 1.3em;
+    height: 1.2em;
 }
 
 #discord {
-    height: 1.1em;
+    height: 1.5em;
+}
+
+#soundcloud {
+    height: 2.4em;
 }
 
 #contacts * {

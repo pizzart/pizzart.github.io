@@ -1,39 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="pibbapibbapibba" />
+        <link rel="stylesheet" href="/styles/styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Montserrat&family=Inter+Tight&display=swap"
+        />
+        <link rel="icon" href="/images/pizza.svg" type="image/x-icon" />
+        <title>Home - PizzArt</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="pibbapibbapibba" />
-    <link rel="stylesheet" href="/styles/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Major+Mono+Display&display=swap" rel="stylesheet">
-    <link rel="icon" href="/images/pizza.svg" type="image/x-icon" />
-    <title>Home - PizzArt</title>
-</head>
+    <body>
+        <header class="navbar">
+            <p>HOME</p>
+            <a href="index.html"
+                ><img src="/images/pizza.svg" alt="home" title="Home"
+            /></a>
+            <a href="about.html"
+                ><img src="/images/pages/about.svg" alt="about" title="About"
+            /></a>
+            <a href="blog.html"
+                ><img src="/images/pages/blog.svg" alt="blog" title="Blog"
+            /></a>
+            <a href="experiments.html"
+                ><img
+                    src="/images/pages/game.svg"
+                    alt="experiments"
+                    title="Experiments"
+            /></a>
+        </header>
+        <main>
+            <h1>PizzArt</h1>
+            <p>
+                Hello! I'm an unprofessional game developer who deperately wants
+                to move to Canada.
+            </p>
+            <p>
+                A.K.A:
+                <a href="/experiments/makeyourownpizza/game.html"
+                    >any of the combinations here</a
+                >
+            </p>
+            <label for="input-font">Font:</label>
+            <select
+                id="input-font"
+                class="input"
+                onchange="changeFont(this.value);"
+            >
+                <option value="Major Mono Display" selected>
+                    Major Mono Display
+                </option>
+                <option value="Montserrat">Montserrat</option>
+                <option value="Inter Tight">Inter Tight</option>
+            </select>
 
-<body>
-    <header class="navbar">
-        <a href="index.html"><img src="/images/pizza.svg" alt="home" /></a>
-        <p>HOME</p>
-        <div>
-            <a href="blog.html"><img src="/images/pages/blog.svg" alt="blog" /></a>
-            <a href="about.html"><img src="/images/pages/about.svg" alt="about" /></a>
-            <a href="editor.html"><img src="/images/pages/editor.svg" alt="editor" /></a>
-            <a href="experiments.html"><img src="/images/pages/game.svg" alt="experiments" /></a>
-        </div>
-    </header>
-    <main>
-        <h1>PizzArt</h1>
-        <p>A.K.A: <a href="/experiments/makeyourownpizza/game.html">any of the combinations here</a></p>
-        <label for="input-font">Font:</label>
-        <select id="input-font" class="input" onchange="changeFont(this.value);">
-          <option value="Major Mono Display">Cool</option>
-          <option value="Montserrat">Readable</option>
-        </select>
-    </main>
-    <script src="/scripts/fonts.js" async defer></script>
-</body>
-
+            <label for="input-theme">Theme:</label>
+            <select
+                id="input-theme"
+                class="input"
+                onchange="changeTheme(this.value);"
+            >
+                <option value="dark" selected>Dark</option>
+                <option value="light">Light</option>
+            </select>
+        </main>
+        <script src="/scripts/fonts.js" async defer></script>
+    </body>
 </html>
