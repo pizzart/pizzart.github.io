@@ -1,0 +1,63 @@
+main {
+    text-align: justify;
+    font-size: 0.8em;
+    display: flex;
+    flex-direction: column;
+}
+
+article {
+    padding-bottom: 1em;
+}
+
+.date {
+    color: var(--textdark-color);
+    font-size: 0.75em;
+}
+
+article h1 {
+    color: var(--textwhite-color);
+    margin-bottom: 0.5em;
+}
+
+article p {
+    margin-left: 0.3rem;
+    padding-left: 0.3rem;
+    border-left: 0.1rem solid var(--accent-color);
+}
+
+article p:last-of-type {
+    margin-bottom: 0.5em;
+}
+
+details > summary::before {
+    content: "SHOW ATTACHMENTS";
+}
+
+details[open] > summary::before {
+    content: "HIDE ATTACHMENTS";
+}
+
+details[open] > summary {
+    color: var(--accenta-alt-color);
+}
+
+summary {
+    color: var(--accent-color);
+    font-size: 0.75em;
+    cursor: pointer;
+    transition: all var(--animation-duration);
+}
+
+summary:hover {
+    color: var(--partial-color);
+}
+
+details * {
+    max-width: 65%;
+    margin-top: 0.2em;
+    margin-left: 1em;
+}
+
+video {
+    margin-left: 2em;
+}

@@ -1,22 +1,26 @@
 :root {
-    --bg-light: hsl(0, 33%, 92%);
+    --bg-light: hsl(0, 28%, 90%);
     --darkbg-light: hsl(0, 20%, 84%);
-    --text-light: black;
-    --textwhite-light: black;
+    --text-light: hsl(0, 8%, 14%);
+    --textwhite-light: hsl(0, 8%, 10%);
+    --icons-light: 0;
 
     --bg-dark: hsl(0, 8%, 14%);
     --darkbg-dark: hsl(0, 8%, 10%);
     --text-dark: hsl(17, 100%, 94%);
     --textwhite-dark: hsl(0, 100%, 97%);
+    --icons-dark: 1;
 
     --bg-color: var(--bg-dark);
     --darkbg-color: var(--darkbg-dark);
     --text-color: var(--text-dark);
     --textwhite-color: var(--textwhite-dark);
-    --textdark-color: hsl(328, 16%, 23%);
+    --textdark-color: hsl(330, 16%, 27%);
     --accent-color: hsl(351, 82%, 52%);
     --accent-alt-color: hsl(351, 98%, 61%);
     --accent2-color: hsl(249, 82%, 56%);
+    --icons-brightness: var(--icons-dark);
+
     --animation-duration: 0.3s;
     --main-width: 1000px;
     --font: "Major Mono Display", Lucida;
@@ -26,6 +30,7 @@
     font-weight: var(--font-thickness);
     font-kerning: 4em;
     color: var(--text-color);
+    color-scheme: dark light;
     font-size: calc(max(4vh, 32px) * 0.8);
     background: var(--bg-color);
     text-align: justify;
@@ -135,3 +140,31 @@ button:focus,
 .navbar img {
     height: 1em;
 }
+/* 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: var(--bg-dark);
+        --darkbg-color: var(--darkbg-dark);
+        --text-color: var(--text-dark);
+        --textwhite-color: var(--textwhite-dark);
+        --textdark-color: hsl(328, 16%, 23%);
+        --accent-color: hsl(351, 82%, 52%);
+        --accent-alt-color: hsl(351, 98%, 61%);
+        --accent2-color: hsl(249, 82%, 56%);
+        --icons-brightness: var(--icons-dark);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: var(--bg-light);
+        --darkbg-color: var(--darkbg-light);
+        --text-color: var(--text-light);
+        --textwhite-color: var(--textwhite-light);
+        --textdark-color: hsl(328, 16%, 23%);
+        --accent-color: hsl(351, 82%, 52%);
+        --accent-alt-color: hsl(351, 98%, 61%);
+        --accent2-color: hsl(249, 82%, 56%);
+        --icons-brightness: var(--icons-light);
+    }
+} */

@@ -42,6 +42,12 @@ function changeTheme(theme) {
         "--textwhite-color",
         declaration.getPropertyValue("--textwhite-" + theme)
     );
+    declaration.setProperty(
+        "--icons-brightness",
+        declaration.getPropertyValue("--icons-" + theme)
+    );
+
+    declaration.setProperty("color-scheme", theme);
 
     if (document.getElementById("input-theme"))
         document.getElementById("input-theme").value = theme;

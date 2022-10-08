@@ -5,8 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="pibbapibbapibba" />
         <link rel="stylesheet" href="/styles/styles.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             rel="stylesheet"
             rel="preload"
@@ -18,29 +16,12 @@
     </head>
 
     <body>
-        <header class="navbar">
-            <p>HOME</p>
-            <a href="index.html"
-                ><img src="/images/pizza.svg" alt="home" title="Home"
-            /></a>
-            <a href="about.html"
-                ><img src="/images/pages/about.svg" alt="about" title="About"
-            /></a>
-            <a href="blog.html"
-                ><img src="/images/pages/blog.svg" alt="blog" title="Blog"
-            /></a>
-            <a href="experiments.html"
-                ><img
-                    src="/images/pages/game.svg"
-                    alt="experiments"
-                    title="Experiments"
-            /></a>
-        </header>
+        <script id="nav-replace" src="/scripts/nav.js" title="HOME"></script>
         <main>
             <h1>PizzArt</h1>
             <p>
-                Hello! I'm an unprofessional game developer who deperately wants
-                to move to Canada.
+                Hello! I'm an unprofessional game developer who desperately
+                wants to move to Canada.
             </p>
             <p>
                 A.K.A:
@@ -48,6 +29,9 @@
                     >any of the combinations here</a
                 >
             </p>
+
+            <br />
+
             <label for="input-font">Font:</label>
             <select
                 id="input-font"
@@ -61,6 +45,8 @@
                 <option value="Inter Tight">Inter Tight</option>
             </select>
 
+            <br />
+
             <label for="input-theme">Theme:</label>
             <select
                 id="input-theme"
@@ -71,6 +57,6 @@
                 <option value="light">Light</option>
             </select>
         </main>
-        <script src="/scripts/fonts.js" async defer></script>
+        <script src="/scripts/theme.js" async defer></script>
     </body>
 </html>

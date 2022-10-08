@@ -1,62 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
-
-main {
-    text-align: justify;
-    font-size: 0.75em;
-    display: flex;
-    flex-direction: column;
-}
-
-article {
-    padding-bottom: 1em;
-}
-
 .date {
     color: var(--textdark-color);
-    font-size: 0.75em;
+    font-size: 0.6em;
+    vertical-align: middle;
+    margin-left: 0.5em;
 }
 
-article h1 {
-    color: var(--textwhite-color);
-    margin-bottom: 0.5em;
+ul {
+    list-style-type: "▸";
+    padding: 0;
 }
-
-article p {
-    margin-left: 0.3rem;
-    padding-left: 0.3rem;
-    border-left: 0.1rem solid var(--accent-color);
-}
-
-article p,
-details {
-    padding-bottom: 0.5rem;
-}
-
-details > summary::before {
-    content: "show attachments";
-}
-
-details[open] > summary::before {
-    content: "hide attachments";
-}
-
-details[open] > summary {
-    color: var(--accenta-alt-color);
-}
-
-summary {
-    color: var(--accent-color);
-    font-size: 0.75em;
-    cursor: pointer;
-    transition: all var(--animation-duration);
-}
-
-summary:hover {
-    color: var(--partial-color);
-}
-
-main img {
-    max-width: 65%;
-    margin-top: 0.2em;
+ul * {
     margin-left: 1em;
 }
