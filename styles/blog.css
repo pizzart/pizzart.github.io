@@ -1,3 +1,7 @@
+:root {
+    text-align: left;
+}
+
 .date {
     color: var(--textdark-color);
     font-size: 0.6em;

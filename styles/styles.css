@@ -15,14 +15,14 @@
     --darkbg-color: var(--darkbg-dark);
     --text-color: var(--text-dark);
     --textwhite-color: var(--textwhite-dark);
-    --textdark-color: hsl(330, 16%, 27%);
+    --textdark-color: hsl(330, 20%, 34%);
     --accent-color: hsl(351, 82%, 52%);
     --accent-alt-color: hsl(351, 98%, 61%);
     --accent2-color: hsl(249, 82%, 56%);
     --icons-brightness: var(--icons-dark);
 
     --animation-duration: 0.3s;
-    --main-width: 1000px;
+    --main-width: 950px;
     --font: "Major Mono Display", Lucida;
     --font-thickness: bold;
 
@@ -56,7 +56,7 @@ main {
     background-color: var(--darkbg-color);
     max-width: var(--main-width);
     margin-inline: auto;
-    padding-inline: 4%;
+    padding-inline: 5%;
     padding-top: 4vh;
     padding-bottom: 1.5em;
     overflow: clip;
@@ -125,46 +125,34 @@ button:focus,
     background-color: var(--darkbg-color);
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-inline: 4%;
-    /* padding-inline: 0.9vmin; */
+    padding-inline: 5%;
+    justify-content: stretch;
+    gap: 5%;
     flex-wrap: wrap;
     max-width: var(--main-width);
     margin: auto;
-    padding-block: 0.3rem;
+    padding-block: 0.1rem;
     border-block: 0.1em solid var(--accent-color);
     font-size: 1.25rem;
 }
 
-.navbar img {
-    height: 1em;
-}
-/* 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-color: var(--bg-dark);
-        --darkbg-color: var(--darkbg-dark);
-        --text-color: var(--text-dark);
-        --textwhite-color: var(--textwhite-dark);
-        --textdark-color: hsl(328, 16%, 23%);
-        --accent-color: hsl(351, 82%, 52%);
-        --accent-alt-color: hsl(351, 98%, 61%);
-        --accent2-color: hsl(249, 82%, 56%);
-        --icons-brightness: var(--icons-dark);
-    }
+.navbar a,
+img {
+    max-height: 1em;
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --bg-color: var(--bg-light);
-        --darkbg-color: var(--darkbg-light);
-        --text-color: var(--text-light);
-        --textwhite-color: var(--textwhite-light);
-        --textdark-color: hsl(328, 16%, 23%);
-        --accent-color: hsl(351, 82%, 52%);
-        --accent-alt-color: hsl(351, 98%, 61%);
-        --accent2-color: hsl(249, 82%, 56%);
-        --icons-brightness: var(--icons-light);
-    }
-} */
+.navbar img {
+    vertical-align: top;
+}
+
+.navbar p {
+    text-align: center;
+    margin: auto;
+}
+
+.navbar #icons {
+    flex-grow: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
