@@ -22,7 +22,7 @@
     --icons-brightness: var(--icons-dark);
 
     --animation-duration: 0.3s;
-    --main-width: 950px;
+    --main-width: max(50vh, 50vw);
     --font: "Major Mono Display", Lucida;
     --font-thickness: bold;
 
@@ -32,9 +32,20 @@
     color: var(--text-color);
     color-scheme: dark light;
     font-size: calc(max(4vh, 32px) * 0.8);
-    background: var(--bg-color);
+    /* background: var(--bg-color); */
     text-align: justify;
     overflow-wrap: break-word;
+    height: 100vh;
+}
+
+:root {
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--darkbg-color),
+        var(--darkbg-color) 20px,
+        var(--bg-color) 0,
+        var(--bg-color) 40px
+    );
 }
 
 ::selection {
@@ -137,7 +148,7 @@ button:focus,
 }
 
 .navbar a,
-img {
+.navbar img {
     max-height: 1em;
 }
 
@@ -146,13 +157,18 @@ img {
 }
 
 .navbar p {
-    text-align: center;
+    text-align: left;
     margin: auto;
+    width: 50%;
+    flex-grow: 2;
 }
 
 .navbar #icons {
     flex-grow: 2;
+    /* max-width: 50%; */
+    /* margin: auto; */
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }

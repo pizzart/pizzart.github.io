@@ -12,27 +12,27 @@
 }
 
 #gh {
-    height: 1.3em;
+    height: 1.1em;
 }
 
 #itch {
-    height: 1.4em;
-}
-
-#yt {
-    height: 1.7em;
-}
-
-#twitch {
     height: 1.2em;
 }
 
-#discord {
+#yt {
     height: 1.5em;
 }
 
+#twitch {
+    height: 1em;
+}
+
+#discord {
+    height: 1.3em;
+}
+
 #soundcloud {
-    height: 2.4em;
+    height: 2.2em;
 }
 
 #contacts * {
