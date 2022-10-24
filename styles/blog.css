@@ -13,6 +13,10 @@ ul {
     list-style-type: "▸";
     padding: 0;
 }
-ul * {
+ul li {
     margin-left: 1em;
+}
+
+ul li * {
+    margin-left: 0.5em;
 }
