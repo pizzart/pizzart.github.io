@@ -1,0 +1,40 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+}
+
+.grid a {
+    overflow: hidden;
+    position: relative;
+    color: var(--text-color);
+}
+
+.grid img {
+    width: 100%;
+}
+
+a p {
+    font-size: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    /* top: 0; */
+    /* bottom: 0; */
+    left: 0;
+    right: 0;
+    transition: all var(--animation-duration);
+    /* z-index: -1; */
+}
+
+.grid a:hover p {
+    /* bottom: 0; */
+    transform: translateY(-100%);
+    /* transform: scale(1, 1); */
+}
+
+.grid a:hover img {
+    /* bottom: 0; */
+    /* transform: translateY(-100%); */
+    filter: brightness(0.65);
+    /* transform: scale(1, 1); */
+}

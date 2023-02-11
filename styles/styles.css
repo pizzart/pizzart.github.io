@@ -22,7 +22,7 @@
     --icons-brightness: var(--icons-dark);
 
     --animation-duration: 0.3s;
-    --main-width: max(50vh, 50vw);
+    --main-width: max(50vw, 800px);
     --font: "Major Mono Display";
     --font-thickness: bold;
 
@@ -32,7 +32,7 @@
     color: var(--text-color);
     color-scheme: dark light;
     /* font-size: calc(max(4vh, 32px) * 0.8); */
-    font-size: 36px;
+    font-size: 28px;
     /* background: var(--bg-color); */
     text-align: justify;
     overflow-wrap: break-word;
@@ -51,7 +51,22 @@
     background-color: var(--accent2-color);
 }
 
-body,
+.navbar {
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+main {
+    /* border-radius: 0 0 10px 10px; */
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+    /* border-bottom: 0.1em solid var(--accent-color); */
+}
+
+body {
+    width: var(--main-width);
+    /* min-width: 600px; */
+    margin: auto;
+}
+
 h1,
 h2,
 p {
@@ -65,8 +80,8 @@ h1 {
 main {
     background-color: var(--darkbg-color);
     max-width: var(--main-width);
-    margin-inline: auto;
-    padding-inline: 5%;
+    /* margin-inline: auto; */
+    padding-inline: 10%;
     padding-top: 16px;
     padding-bottom: 1.5em;
     overflow: clip;
@@ -113,8 +128,11 @@ button,
 .file-button {
     font: inherit;
     color: var(--text-color);
-    background: var(--darkbg-color);
-    border: var(--accent-color) solid 0.1em;
+    background: var(--bg-color);
+    border: none;
+    /* border-bottom: var(--accent-color) solid 0.1em; */
+    /* border-right: var(--accent-color) solid 0.1em; */
+    box-shadow: 0.1em 0.1em var(--accent-color);
     max-width: 100%;
     padding: 0.1em;
     margin-block: 0.2em;
@@ -122,14 +140,14 @@ button,
     transition: all var(--animation-duration);
 }
 
-:is(button, .file-button):hover {
+/* :is(button, .file-button):hover {
     border-color: var(--partial-color);
 }
 
 button:focus,
 .file-button:active {
     border-color: var(--accent-alt-color);
-}
+} */
 
 .navbar {
     background-color: var(--darkbg-color);
@@ -137,13 +155,14 @@ button:focus,
     flex-direction: row;
     padding-inline: 5%;
     justify-content: stretch;
-    margin-inline: auto;
+    /* margin-inline: auto; */
     /* gap: 5%; */
     flex-wrap: wrap;
-    max-width: calc(var(--main-width) - 0.2em);
+    max-width: var(--main-width);
     padding-block: 0.1rem;
-    border: 0.1em solid var(--accent-color);
-    font-size: 1.1rem;
+    border-top: 0.1em solid var(--accent-color);
+    /* border-bottom: 0.1em dashed var(--accent-alt-color); */
+    font-size: 1.2rem;
 }
 
 .navbar a,
@@ -160,14 +179,15 @@ button:focus,
     margin: auto;
     width: 50%;
     flex-grow: 2;
+    color: var(--textdark-color);
 }
 
 .navbar #icons {
     flex-grow: 2;
-    /* max-width: 50%; */
+    /* max-width: 20%; */
     /* margin: auto; */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
 }
