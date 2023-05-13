@@ -22,7 +22,7 @@ a p {
     /* bottom: 0; */
     left: 0;
     right: 0;
-    transition: all var(--animation-duration);
+    /* transition: all var(--animation-duration); */
     /* z-index: -1; */
 }
 

@@ -1,9 +1,9 @@
 #contacts {
-    padding: 0;
-    margin-block: 0.3em;
+    /* padding: 0; */
+    margin-top: 0.5em;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: flex-start; */
     flex-wrap: wrap;
 }
 
@@ -16,28 +16,28 @@
 }
 
 #itch {
-    height: 1.2em;
+    height: 1.1em;
 }
 
 #yt {
-    height: 1.5em;
-}
-
-#twitch {
     height: 1em;
 }
 
-#discord {
+#twitch {
     height: 1.3em;
 }
 
+#discord {
+    height: 1.1em;
+}
+
 #soundcloud {
-    height: 2.2em;
+    height: 0.9em;
 }
 
 #contacts * {
-    filter: brightness(var(--icons-brightness));
-    transition: filter var(--animation-duration);
+    filter: brightness(var(--icons));
+    /* transition: filter var(--animation-duration); */
 }
 
 #contacts *:hover {

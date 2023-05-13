@@ -5,60 +5,55 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="pibbapibbapibba" />
         <link rel="stylesheet" href="/styles/styles.css" />
-        <link
-            rel="stylesheet"
-            rel="preload"
-            as="style"
-            href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Montserrat&family=Inter+Tight&display=swap"
-        />
+        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" /> -->
+        <!-- <link
+      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Montserrat&family=Inter+Tight&display=swap"
+    /> -->
         <link rel="icon" href="/images/croppedsun.svg" type="image/x-icon" />
-        <title>Home - PizzArt</title>
+        <title>home</title>
     </head>
 
     <body>
         <script id="nav-replace" src="/scripts/nav.js" title="HOME"></script>
         <main>
-            <h1>PizzArt</h1>
-            <p>Hello! I'm a jack of all trades, master of none.</p>
+            <h1>pizzart</h1>
             <p>
-                A.K.A:
+                hello! i'm a jack of all trades, master of none.
+                <br />
+                also known as:
                 <a href="/experiments/makeyourownpizza/game.html"
                     >any of the combinations here</a
-                >.
-            </p>
-            <p>
-                Check out my <a href="blog.html">blog</a> or
+                >
+                <br />
+                check out my <a href="blog.html">blog</a> or
                 <a href="experiments.html">experiments</a>, or read
                 <a href="about.html">about me</a>.
             </p>
 
-            <br />
+            <!-- <br />
 
-            <label for="input-font">Font:</label>
-            <select
-                id="input-font"
-                class="input"
-                onchange="changeFont(this.value);"
-            >
-                <option value="Major Mono Display" selected>
-                    Major Mono Display
-                </option>
-                <option value="Montserrat">Montserrat</option>
-                <option value="Inter Tight">Inter Tight</option>
-            </select>
+      <label for="input-font">Font:</label>
+      <select id="input-font" class="input" onchange="changeFont(this.value);">
+        <option value="Major Mono Display" selected>Major Mono Display</option>
+        <option value="Montserrat">Montserrat</option>
+        <option value="Inter Tight">Inter Tight</option>
+      </select>
 
-            <br />
+      <br /> -->
 
-            <label for="input-theme">Theme:</label>
+            <label for="input-theme">theme:</label>
             <select
                 id="input-theme"
                 class="input"
                 onchange="changeTheme(this.value);"
             >
-                <option value="dark" selected>Dark</option>
-                <option value="light">Light</option>
+                <option value="dark" selected>dark</option>
+                <option value="light">light</option>
             </select>
+            <script src="/scripts/theme.js" async defer></script>
         </main>
-        <script src="/scripts/theme.js" async defer></script>
     </body>
 </html>

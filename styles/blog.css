@@ -3,20 +3,21 @@
 }
 
 .date {
-    color: var(--textdark-color);
+    color: var(--text-dark);
     font-size: 0.6em;
     vertical-align: middle;
     margin-left: 0.5em;
 }
 
-ul {
-    list-style-type: "▸";
-    padding: 0;
+/* ul {
+list-style-type: "▸";
+padding: 0;
 }
+
 ul li {
     margin-left: 1em;
 }
 
 ul li * {
     margin-left: 0.5em;
-}
+} */

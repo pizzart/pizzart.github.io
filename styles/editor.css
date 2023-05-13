@@ -4,14 +4,14 @@
     justify-content: center;
     margin: auto;
     margin-top: 0.4em;
-    border: 0.1em dashed var(--accent-color);
+    border: 0.1em dashed var(--accent);
     width: 80%;
     padding: 0.1em;
-    transition: all 0.2s;
+    /* transition: all 0.2s; */
 }
 
 #drop-area.highlight {
-    border-color: var(--partial-color);
+    border-color: var(--accent-alt);
 }
 
 #drop-area * {
@@ -25,7 +25,7 @@
 
 #fail {
     display: none;
-    color: var(--accent-alt-color);
+    color: var(--accent-alt);
 }
 
 #functions {
@@ -68,15 +68,15 @@
     left: 0;
     height: 1em;
     width: 1em;
-    border: solid 0.1em var(--text-color);
+    border: solid 0.1em var(--text);
 }
 
 .container:hover input ~ .check {
-    border: solid 0.1em var(--textwhite-color);
+    border: solid 0.1em var(--textwhite);
 }
 
 .container input:checked ~ .check {
-    border: solid 0.1em var(--accent-color);
+    border: solid 0.1em var(--accent);
 }
 
 .check:after {
@@ -95,7 +95,7 @@
     width: 35%;
     height: 35%;
     border-radius: 50%;
-    border: solid 0.1em var(--accent-color);
+    border: solid 0.1em var(--accent);
 }
 
 .container .box:after {
@@ -103,7 +103,7 @@
     left: 25%;
     width: 34%;
     height: 35%;
-    border: solid 0.1em var(--accent-color);
+    border: solid 0.1em var(--accent);
 }
 
 .radio {
@@ -139,7 +139,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    border: solid 0.1em var(--text-color);
+    border: solid 0.1em var(--text);
     transition: all 0.3s;
 }
 
@@ -150,17 +150,17 @@
     width: 0.5em;
     left: 0.1em;
     bottom: 0.08em;
-    border: solid 0.1em var(--text-color);
-    transition: var(--animation-duration);
+    border: solid 0.1em var(--text);
+    transition: 1;
 }
 
 input:checked + .slider {
-    border-color: var(--accent-color);
+    border-color: var(--accent);
 }
 
 input:checked + .slider:before {
     transform: translateX(1.11em);
-    border-color: var(--accent-color);
+    border-color: var(--accent);
 }
 
 /* OLD WALL-E PREVIEW
