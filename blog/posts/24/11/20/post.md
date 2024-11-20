@@ -103,19 +103,23 @@ consider me gone off the face of the internet, i do not exist
 #### footnotes
 
 i like these (call these an obsession or hyperfixation (my self diagnosis says i am mentally ill)):
-- https://carseatheadrest.bandcamp.com
-- https://weatherornot.bandcamp.com
-- https://michaelcerapalin.bandcamp.com
-- https://femtanyl.bandcamp.com/
-- https://machinegirl.bandcamp.com/
-- https://panchiko.bandcamp.com/track/gwen-everest
 
-- https://www.youtube.com/@Acerola_t
-- https://www.youtube.com/@doodley3d
+##### music
+- [Car Seat Headrest](https://carseatheadrest.bandcamp.com)
+- [Weatherday](https://weatherornot.bandcamp.com)
+- [Michael Cera Palin](https://michaelcerapalin.bandcamp.com)
+- [Femtanyl](https://femtanyl.bandcamp.com)
+- [Machine Girl](https://machinegirl.bandcamp.com)
+- [Gwen Everest by Panchiko](https://panchiko.bandcamp.com/track/gwen-everest)
+##### channels
+- [Acerola](https://www.youtube.com/@Acerola_t)
+- [Doodley](https://www.youtube.com/@doodley3d)
+##### games
+- [ULTRAKILL](https://store.steampowered.com/app/1229490/ULTRAKILL)
+- [Cruelty Squad](https://store.steampowered.com/app/1388770/Cruelty_Squad)
+- [Mouthwashing](https://store.steampowered.com/app/2475490/Mouthwashing)
 
-- https://store.steampowered.com/app/1229490/ULTRAKILL/
-- https://store.steampowered.com/app/1388770/Cruelty_Squad/
-- https://store.steampowered.com/app/2475490/Mouthwashing/
+this isn't a comprehensive list, just some things i've been enjoying for a few months
 
 ### that's all, folks!
 
