@@ -22,6 +22,7 @@
     --icons: var(--icons-d);
 
     --text-dark: hsl(330, 20%, 34%);
+    --selection: hsl(330, 18%, 40%);
     --accent: hsl(351, 82%, 52%);
     --accent-alt: hsl(351, 70%, 40%);
     --width: max(50vw, 800px);
@@ -65,7 +66,7 @@
 }
 
 ::selection {
-    background-color: var(--text-dark);
+    background-color: var(--selection);
 }
 
 body {
@@ -137,6 +138,13 @@ button,
     margin-block: 0.2em;
     cursor: pointer;
     /* transition: all var(--animation-duration); */
+}
+
+hr {
+    height: 3px;
+    background-color: var(--bg-light);
+    border: none;
+    margin-top: 0.5em;
 }
 
 /* NAVBAR */
